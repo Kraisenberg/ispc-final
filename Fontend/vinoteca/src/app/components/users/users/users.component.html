@@ -2,8 +2,11 @@
     <div class="card-header">Usuarios</div>
     <div class="card-body text-primary">
       <h5 class="card-title">Listado de Usuarios</h5>
+        <div *ngIf="usuarios.length==0" class="alert alert-info">
+            No hay registros en la base de datos
+        </div>
       
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" *ngIf="usuarios.length>0">
 
             <thead>
                  <tr>

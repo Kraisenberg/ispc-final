@@ -35,21 +35,46 @@ export class UserserviceService {
 
   //Metodo para crar un nuevo usuario
   create(user: User): Observable<User>{
-    return this.http.post<User>(this.url, user, {headers: this.httpHeaders} )
+    return this.http.post<User>(this.url, user, {headers: this.httpHeaders}).pipe(
+    catchError(e => {
+      console.error(e.error.mensaje);  
+      sweetAlert(e.error.mensaje , e.error.error, 'error')
+      return throwError(e);
+      })
+    );
   }
 
   getUsuario(id: number): Observable<User>{
-    return this.http.get<User>(`${this.url}/${id}`);
+    return this.http.get<User>(`${this.url}/${id}`).pipe(
+      catchError(e =>{ 
+        this.router.navigate(['/usuarios']);
+        console.error(e.error.mensaje);
+        sweetAlert('Error al editar', e.error.mensaje, 'error' );
+        return throwError(e);
+      })
+    );
+
   }
 
   updateUsuario(user: User): Observable<User>{
-    return this.http.put<User>(`${this.url}/${user.id}`,user, {headers: this.httpHeaders})
+    return this.http.put<User>(`${this.url}/${user.id}`,user, {headers: this.httpHeaders}).pipe(
+      catchError(e => {
+        console.error(e.error.mensaje);  
+        sweetAlert(e.error.mensaje , e.error.error, 'error')
+        return throwError(e);
+        })
+
+    )
   }
 
   deleteUsuario(id: number): Observable<User>{
-    return this.http.delete<User>(`${this.url}/${id}`,{headers: this.httpHeaders})
+    return this.http.delete<User>(`${this.url}/${id}`,{headers: this.httpHeaders}).pipe(
+      catchError(e => {
+        console.error(e.error.mensaje);  
+        sweetAlert(e.error.mensaje , e.error.error, 'error')
+        return throwError(e);
+        })
+    )
   }
-
-
 
 }

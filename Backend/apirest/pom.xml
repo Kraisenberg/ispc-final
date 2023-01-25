@@ -70,8 +70,8 @@
 			<artifactId>spring-security-jwt</artifactId>
 			<version>1.1.1.RELEASE</version>
 		</dependency>
-		
-		
+
+
 		<!--Solo por tener jdk 9 o superior -->
 
 		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
@@ -84,6 +84,12 @@
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
 
