@@ -24,7 +24,7 @@ export class UsersComponent implements OnInit {
     
     Swal.fire({
       title: 'Estas seguro?',
-      text: `¿Seguro que desea eliminar el usuario ${user.name}? ${user.lastname}?`,
+      text: `¿Seguro que desea eliminar el usuario ${user.name} ${user.lastname}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -36,7 +36,7 @@ export class UsersComponent implements OnInit {
         this.usuarioservice.deleteUsuario(user.id).subscribe(
           () => {
             this.usuarios = this.usuarios.filter(cli => cli !== user)
-            Swal.fire('Eliminado!',`El usuario ${user.name}? ${user.lastname} fué eliminado exitosamente.`,'success')})
+            Swal.fire('Eliminado!',`El usuario ${user.name} ${user.lastname} fué eliminado exitosamente.`,'success')})
       }
     })
   }
