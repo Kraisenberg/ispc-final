@@ -37,6 +37,13 @@ export class UserserviceService {
   create(user: User): Observable<User>{
     return this.http.post<User>(this.url, user, {headers: this.httpHeaders}).pipe(
     catchError(e => {
+
+      if(e.status == 400){
+        return throwError(e)
+      }
+
+
+
       console.error(e.error.mensaje);  
       sweetAlert(e.error.mensaje , e.error.error, 'error')
       return throwError(e);
@@ -59,6 +66,11 @@ export class UserserviceService {
   updateUsuario(user: User): Observable<User>{
     return this.http.put<User>(`${this.url}/${user.id}`,user, {headers: this.httpHeaders}).pipe(
       catchError(e => {
+
+        if(e.status == 400){
+          return throwError(e)
+        }
+
         console.error(e.error.mensaje);  
         sweetAlert(e.error.mensaje , e.error.error, 'error')
         return throwError(e);

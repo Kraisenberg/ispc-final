@@ -18,6 +18,8 @@ export class RegisterComponent implements OnInit {
   public ulogin : LoginUser = new LoginUser();
   public titulo: string = "Registrarse"
 
+  public errores: string[] = [];
+
   constructor(
     private userService: UserserviceService,  
     private router: Router,
@@ -33,7 +35,7 @@ export class RegisterComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => { 
       let id = params['id']
         if(id){
-          this.userService.getUsuario(id).subscribe( (user) => this.user = user)
+          this.userService.getUsuario(id).subscribe( (user) => this.user = user);
         }
       }
     )
@@ -41,14 +43,29 @@ export class RegisterComponent implements OnInit {
 
   //Metodo para crear un nuevo usuario (LLama al servicio)
   create(): void{
-    this.userService.create(this.user).subscribe( usuario => { this.router.navigate(['/usuarios'])
-    swal('Nuevo Usuario ', `Usuario ${this.user.name} creado exitosamente`, 'success') 
-    })
+    this.userService.create(this.user).subscribe( 
+      usuario =>{ 
+        this.router.navigate(['/usuarios']);
+        swal('Nuevo Usuario ', `Usuario ${this.user.name} creado exitosamente`, 'success');
+      },
+      err =>{ 
+        this.errores = err.error.errors as string[];
+        console.error('Codigo del error desde el backend ' + err.status);
+        console.error(err.error.errors);     
+      }
+    );
   }
 
   actualizarUsuario(): void{
-    this.userService.updateUsuario(this.user).subscribe( usuario => { this.router.navigate(['/usuarios'])
-    swal('Usuario Actualizado', `Usuario ${this.user.name} actualizado exitosamente`, 'success')
+    this.userService.updateUsuario(this.user).subscribe(
+       usuario => { 
+        this.router.navigate(['/usuarios']);
+        swal('Usuario Actualizado', `Usuario ${this.user.name} actualizado exitosamente`, 'success');
+     },
+     err =>{ 
+       this.errores = err.error.errors as string[];
+       console.error('Codigo del error desde el backend ' + err.status);
+       console.error(err.error.errors);     
      })
   }
  

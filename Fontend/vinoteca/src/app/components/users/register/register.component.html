@@ -1,3 +1,15 @@
+<ul class="alert alert-danger" *ngIf="errores.length > 0">
+    <li *ngFor="let err of errores">
+        {{err}}
+    </li>
+</ul>
+
+
+
+
+
+
+
 <div class="card bg-dark text-white">
     <div class="card-header"> {{titulo}} </div>
     <div class="card-body">
@@ -6,7 +18,7 @@
             <div class="form-grup row">
                 <label for="name" class="col-form-label col-sm-2">Nombre</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="user.name" name="name" required minlength="4" #nombre="ngModel"> 
+                    <input type="text" class="form-control" [(ngModel)]="user.name" name="name" #nombre="ngModel"> <!--required   minlength="4"     -->
                     <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
                         <div  *ngIf="nombre.errors?.['required']">
                             Nombre es requerido
@@ -21,7 +33,7 @@
             <div class="form-grup row">
                 <label for="lastname" class="col-form-label col-sm-2">Apellido</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="user.lastname" name="lastname" required #apellido="ngModel">
+                    <input type="text" class="form-control" [(ngModel)]="user.lastname" name="lastname"  #apellido="ngModel">
                     <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
                         <div  *ngIf="apellido.errors?.['required']">
                             Apellido es requerido
@@ -33,7 +45,7 @@
             <div class="form-grup row">
                 <label for="email" class="col-form-label col-sm-2">Email</label>
                 <div class="col-sm-6">
-                    <input type="email" class="form-control" [(ngModel)]="user.email" name="email" required email #email="ngModel">
+                    <input type="email" class="form-control" [(ngModel)]="user.email" name="email" email #email="ngModel">
                     <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
                         <div  *ngIf="email.errors?.['required']">
                             Correo es requerido
@@ -48,7 +60,7 @@
             <div class="form-grup row">
                 <label for="password" class="col-form-label col-sm-2">Contraseña</label>
                 <div class="col-sm-6">
-                    <input type="password" class="form-control" [(ngModel)]="user.password" name="password" required #pass="ngModel"> 
+                    <input type="password" class="form-control" [(ngModel)]="user.password" name="password" #pass="ngModel"> 
                     <div class="alert alert-danger" *ngIf="pass.invalid && (pass.dirty || pass.touched)">
                         <div  *ngIf="pass.errors?.['required']">
                             Contraseña es requerida
