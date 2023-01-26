@@ -24,8 +24,8 @@ public class User implements Serializable{
 	private long id;
 	
 	@NotEmpty
-	@Size(min=4)
-	@Column(nullable = false, length=15)
+	@Size(min=4, max=30)
+	@Column(nullable = false, length=30)
 	private String name;
 	
 	@NotEmpty
@@ -37,6 +37,7 @@ public class User implements Serializable{
 	@Column(name="mail", nullable=false,length = 50, unique =true)
 	private String email;	
 
+	@NotEmpty
 	@Column(length = 25)
 	private String password;
 	
