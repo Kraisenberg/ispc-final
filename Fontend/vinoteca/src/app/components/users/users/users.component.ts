@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './user';
 import { UserserviceService } from './userservice.service';
 import Swal from 'sweetalert2';
+import { tap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -10,14 +12,38 @@ import Swal from 'sweetalert2';
 })
 export class UsersComponent implements OnInit {
 
-  usuarios: User[] = []
+  usuarios: User[] = [];
+  paginator: any;
 
-  constructor(private usuarioservice: UserserviceService) { }
+  constructor(private usuarioservice: UserserviceService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.usuarioservice.getUsuarios().subscribe(
-      usuarios => this.usuarios = usuarios
-    );
+    
+    this.activatedRoute.paramMap.subscribe( params =>
+ 
+    {
+      let page: number = +params.get('page');
+
+      if(!page){
+        page = 0
+      }
+
+      this.usuarioservice.getUsuarios(page).pipe(
+        tap(response => {
+          console.log('Usuariocomponent: tap 2');
+          (response.content as User[]).forEach(usuario => {console.log(usuario.name); })
+       })
+     )
+      .subscribe(
+        response => {
+          this.usuarios = response.content as User[];
+          this.paginator = response;
+        });
+      })
+  
+
+
+
   }
 
   eliminarUsuario(user: User): void{
