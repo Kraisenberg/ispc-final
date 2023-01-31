@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'paginator-nav',
@@ -11,7 +12,7 @@ export class PaginatorComponent implements OnInit {
 
   pages: number[] = [];
 
-  constructor() { }
+  constructor(public router: Router, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
