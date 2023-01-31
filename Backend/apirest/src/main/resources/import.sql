@@ -2,8 +2,8 @@ INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('mati@hotma
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('paco@hotmail.com','motal','bobinian','1234');
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('dio@speedwagon.com','Brando','Dio','123sd4');
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('jotaro@speedwagon.com','Joestar','Joseph','1dh234');
-INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('jolyne@speedwagon.com','Cujoh ','Jolyneh','12dfgh34');
-INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('jotaro@speedwagon.com','Cujoh ','Jostaro','12fdgh34');
+INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('jolyne@speedwagon.com','Cujoh ','Jolyne','12dfgh34');
+INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('jotaro@speedwagon.com','Cujoh ','Jotaro','12fdgh34');
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('josuke@speedwagon.com','Higashikata','Josuke','sdfgfdgh');
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('caesarzeppeli@speedwagon.com','Zeppeli','Caesar','Anthonio');
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`) VALUES ('williamzeppeli@speedwagon.com','Zeppeli','William','wili23');

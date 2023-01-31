@@ -1,6 +1,13 @@
-<ul *ngIf="pages?.length > 0" class="">
+<ul *ngIf="this.router.url =='/usuarios' && pages?.length! > 0" class="pagination" >
     <li *ngFor="let page of pages">
-       <a [routerLink]= "['usuarios/page/',page-1]" > {{page}} </a> 
+       <a [routerLink]= "['page/',page-1]" > {{page}} </a> 
+    </li>
+
+</ul>
+
+<ul *ngIf="this.router.url !=='/usuarios' && pages?.length! > 0" class="pagination" >
+    <li *ngFor="let page of pages">
+       <a [routerLink]= "['/usuarios/page/',page-1]" > {{page}} </a> 
     </li>
 
 </ul>
