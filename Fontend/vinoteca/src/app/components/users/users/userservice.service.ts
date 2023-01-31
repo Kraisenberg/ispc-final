@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
+import { map, tap } from 'rxjs';
 //import { USUARIOS } from './usuarios.json';
 import { catchError, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -26,11 +27,28 @@ export class UserserviceService {
     return false;
   }
 
-  getUsuarios(): Observable<User[]> {
+  getUsuarios(page: number): Observable<any> {
     //aca tenemos que devolver un objeto user sin enbargo httpClient nos manda un obserbable la siguiente linea lo transforma en un objeto User
-    return this.http.get<User[]>(this.url);
-    //tambien se puede hacer con el operador map que viene de rxjs
-    // return this.http.get(this.url).pipe(map( response => response as => User[]))
+    return this.http.get<User[]>(this.url + '/page/' + page).pipe(
+      tap((response: any) =>{
+        console.log('Userservice: tap 1');
+        (response.content as User[]).forEach(usuario =>{
+          console.log(usuario.name);    
+        })
+
+      }),  
+
+      map(response => {      
+          (response.content as User[]).map(usuario => {
+            usuario.name = usuario.name.toUpperCase();
+            return usuario;
+          });
+          return response;
+        })
+
+
+
+    );
   }
 
   //Metodo para crar un nuevo usuario

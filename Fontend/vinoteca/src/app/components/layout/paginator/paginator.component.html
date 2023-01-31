@@ -1,0 +1,6 @@
+<ul *ngIf="pages?.length > 0" class="">
+    <li *ngFor="let page of pages">
+       <a [routerLink]= "['usuarios/page/',page-1]" > {{page}} </a> 
+    </li>
+
+</ul>

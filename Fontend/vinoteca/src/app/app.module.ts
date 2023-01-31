@@ -14,6 +14,7 @@ import { UserserviceService } from './components/users/users/userservice.service
 import { RegisterComponent } from './components/users/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/users/login/login.component';
+import { PaginatorComponent } from './components/layout/paginator/paginator.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LoginComponent } from './components/users/login/login.component';
     ProductComponent,
     UsersComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,

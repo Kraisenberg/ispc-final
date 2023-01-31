@@ -5,10 +5,13 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { UsersComponent } from './components/users/users/users.component';
 
 const routes: Routes = [
-  {path:'usuarios', component: UsersComponent },
+  
+  {path:'usuarios', component: UsersComponent, pathMatch:'full' },
+  {path:'usuarios/page/:page', component: UsersComponent, pathMatch: 'full' },
   {path:'registro', component: RegisterComponent},
   {path:'registro/:id', component: RegisterComponent },
   {path:'login', component: LoginComponent },
+  
 
 ];
 

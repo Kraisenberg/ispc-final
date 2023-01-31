@@ -12,6 +12,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -45,6 +47,24 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	
+	//Read All users
+	@GetMapping
+	public List<User> readAll(){
+		List<User> users = StreamSupport
+				.stream(userService.findAll().spliterator(), false)
+				.collect(Collectors.toList());
+		return users;
+	}
+	
+	
+	@GetMapping("/page/{page}")
+	public Page<User> readAll(@PathVariable Integer page){
+		return userService.findAll(PageRequest.of(page, 5));
+	}
+	
+	
+
 	//Create a new user
 	//@Secured({"ROLE_ADMIN"})
 	@PostMapping
@@ -182,14 +202,5 @@ public class UserController {
 	
 	}
 	
-
-	//Read All users
-	@GetMapping
-	public List<User> readAll(){
-		List<User> users = StreamSupport
-				.stream(userService.findAll().spliterator(), false)
-				.collect(Collectors.toList());
-		return users;
-	}
 	
 }
