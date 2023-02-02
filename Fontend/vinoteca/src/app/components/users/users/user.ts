@@ -5,6 +5,8 @@ export class User {
     email!: string;
     password!: string;
     createAt!: Date;
+    foto!: string;
+
 }
 
 export class LoginUser {

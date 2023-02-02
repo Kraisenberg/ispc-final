@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/users/login/login.component';
 import { PaginatorComponent } from './components/layout/paginator/paginator.component';
+import { DetalleComponent } from './components/users/detalle/detalle.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { PaginatorComponent } from './components/layout/paginator/paginator.comp
     UsersComponent,
     RegisterComponent,
     LoginComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    DetalleComponent
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,9 @@
            
             <tbody>
                 <tr *ngFor="let usuario of usuarios">
-                    <td>{{ usuario.id }}</td>
+                    <td>
+                        <button type="button" [routerLink]="['/usuarios/ver/',usuario.id]" class="btn btn-primary">{{ usuario.id }}</button>
+                    </td>
                     <td>{{ usuario.name }}</td>
                     <td>{{ usuario.lastname }}</td>
                     <td>{{ usuario.email }}</td>
@@ -34,7 +36,7 @@
                     </td>
                     <td>
                         <button type="button" name="eliminar" (click)="eliminarUsuario(usuario)" class="btn btn-danger">Eliminar</button>
-                    </td>
+                    </td> 
                 </tr>
             </tbody>
             

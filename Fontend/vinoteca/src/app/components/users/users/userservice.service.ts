@@ -107,4 +107,25 @@ export class UserserviceService {
     )
   }
 
+  subirFoto(archivo: File, id: any): Observable<User> {
+    let formtData = new FormData();
+    formtData.append("archivo", archivo);
+    formtData.append("id", id);
+    return this.http.post(`${this.url}/upload/`, formtData).pipe(
+      map((response: any) => response.usuario as User),
+      catchError(e => {
+
+        if(e.status == 400){
+          return throwError(e)
+        }
+        console.error(e.error.mensaje);  
+        sweetAlert(e.error.mensaje , e.error.error, 'error')
+        return throwError(e);
+        })
+    );
+  }
+
+
+
+
 }
