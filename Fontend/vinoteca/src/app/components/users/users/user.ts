@@ -4,6 +4,7 @@ export class User {
     lastname!: string;
     email!: string;
     password!: string;
+    createAt!: Date;
 }
 
 export class LoginUser {

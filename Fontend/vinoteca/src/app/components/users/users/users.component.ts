@@ -41,9 +41,6 @@ export class UsersComponent implements OnInit {
         });
       })
   
-
-
-
   }
 
   eliminarUsuario(user: User): void{
