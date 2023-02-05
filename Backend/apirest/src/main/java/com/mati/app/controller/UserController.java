@@ -285,19 +285,24 @@ public class UserController {
 		
 		
 		Path rutaArchivo = Paths.get("uploads").resolve(nombreFoto).toAbsolutePath();
-		log.info(rutaArchivo.toString());
+		log.info(rutaArchivo.toString()); 
 		Resource recurso = null;
 		
 		try {
 			recurso = new UrlResource(rutaArchivo.toUri());
 		} catch (MalformedURLException e) {
-			
 			e.printStackTrace();
 		}
 		
 		if(!recurso.exists() && !recurso.isReadable()) {
 			
-			throw new RuntimeException("Error no se pudo cargar la imagen");
+			Path rutaArchivo2 = Paths.get("src/main/resources/static/images").resolve("no-usuario.png").toAbsolutePath();
+			try {
+				recurso = new UrlResource(rutaArchivo2.toUri());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			log.error("Error no se pudo cargar la imagen");
 		}
 		HttpHeaders cabecera = new HttpHeaders();
 		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"" );

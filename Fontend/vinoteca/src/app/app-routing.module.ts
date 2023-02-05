@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:'usuarios/page/:page', component: UsersComponent, pathMatch: 'full' },
   {path:'registro', component: RegisterComponent},
   {path:'registro/:id', component: RegisterComponent },
-  {path:'usuarios/ver/:id', component: DetalleComponent },
+ // {path:'usuarios/ver/:id', component: DetalleComponent },
   {path:'login', component: LoginComponent },
   
 

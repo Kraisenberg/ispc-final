@@ -4,6 +4,7 @@ import { UserserviceService } from './userservice.service';
 import Swal from 'sweetalert2';
 import { tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { ModalService } from '../detalle/modal.service';
 
 @Component({
   selector: 'app-users',
@@ -14,8 +15,9 @@ export class UsersComponent implements OnInit {
 
   usuarios: User[] = [];
   paginator: any;
+  usuarioSeleccionado: User = null; 
 
-  constructor(private usuarioservice: UserserviceService, private activatedRoute: ActivatedRoute) { }
+  constructor(private usuarioservice: UserserviceService, private activatedRoute: ActivatedRoute, private modalService :ModalService) { }
 
   ngOnInit(): void {
     
@@ -41,6 +43,18 @@ export class UsersComponent implements OnInit {
         });
       })
   
+      this.modalService.notificarUpload.subscribe(usuario =>{
+        this.usuarios = this.usuarios.map(usuarioOriginal =>{
+          if(usuario.id == usuarioOriginal.id){
+            usuarioOriginal.foto = usuario.foto;
+          } 
+          return usuarioOriginal;
+        })
+      });
+
+
+
+
   }
 
   eliminarUsuario(user: User): void{
@@ -64,6 +78,12 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  abrirModal(usuario: User){
+ 
+    this.usuarioSeleccionado = usuario;
+    this.modalService.abrirModal();
+
+  }
 
 
 
@@ -77,8 +97,7 @@ export class UsersComponent implements OnInit {
 
 
 
-
-
+  
 
 
 
