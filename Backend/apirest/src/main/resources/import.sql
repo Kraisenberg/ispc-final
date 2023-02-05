@@ -1,6 +1,6 @@
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`,`create_at`) VALUES ('mati@hotmail.com','sacchi','matias','1234', '0001-01-01');
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`,`create_at`) VALUES ('paco@hotmail.com','motal','bobinian','1234', '2025-12-12');
-INSERT INTO `users` (`mail`, `lastname`, `name`, `password`,`create_at`) VALUES ('dio@speedwagon.com','Brando','Dio','123sd4','2013-09-01');
+INSERT INTO `users` (`mail`, `lastname`, `name`, `password`,`create_at`) VALUES ('dio@speedwagon.com','Brando','Dioo','123sd4','2013-09-01');
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`,`create_at`) VALUES ('jotaro@speedwagon.com','Joestar','Joseph','1dh234', '2023-12-03' );
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`,`create_at`) VALUES ('jolyne@speedwagon.com','Cujoh ','Jolyne','12dfgh34', '2025-12-12');
 INSERT INTO `users` (`mail`, `lastname`, `name`, `password`,`create_at`) VALUES ('jotaro@speedwagon.com','Cujoh ','Jotaro','12fdgh34', '2025-12-12');
