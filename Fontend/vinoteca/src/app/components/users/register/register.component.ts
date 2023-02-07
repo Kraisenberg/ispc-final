@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert';
-import Swal from 'sweetalert2';
-import { User , LoginUser } from '../users/user';
+import { Region } from '../users/region';
+import { User } from '../users/user';
 import { UserserviceService } from '../users/userservice.service';
 
 
@@ -15,7 +15,9 @@ import { UserserviceService } from '../users/userservice.service';
 export class RegisterComponent implements OnInit {
 
   public user : User = new User();
-  public ulogin : LoginUser = new LoginUser();
+  public regiones: Region[] = []; 
+
+
   public titulo: string = "Registrarse"
 
   public errores: string[] = [];
@@ -27,10 +29,15 @@ export class RegisterComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-      this.cargarUsuario();
+    this.cargarUsuario();  
+    this.cargarRegiones();
+
+  }
+  cargarRegiones(){
+    this.userService.getRegiones().subscribe(regiones => this.regiones= regiones);
+
   }
 
-  //Este metodo cargará un usuario si le pasamos un id
   cargarUsuario(): void{
     this.activatedRoute.params.subscribe(params => { 
       let id = params['id']
@@ -69,6 +76,12 @@ export class RegisterComponent implements OnInit {
      })
   }
  
+  compararRegion(o1: Region , o2: Region): boolean {
+
+    if(o1 === undefined && o2 === undefined){ return true;}
+
+    return o1 == null || o2 == null? false: o1.id === o2.id;
+  }
 
 }
 
