@@ -6,6 +6,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Router } from '@angular/router';
+import { Region } from './region';
 
 @Injectable({
   providedIn: 'root'
@@ -125,7 +126,9 @@ export class UserserviceService {
     );
   }
 
-
+  getRegiones(): Observable<Region[]>{
+   return this.http.get<Region[]>(this.url + '/regiones');
+  }
 
 
 }

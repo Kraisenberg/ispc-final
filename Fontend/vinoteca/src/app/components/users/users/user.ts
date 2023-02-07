@@ -1,3 +1,5 @@
+import { Region } from "./region";
+
 export class User {
     id!: number;
     name!: string;
@@ -6,12 +8,6 @@ export class User {
     password!: string;
     createAt!: Date;
     foto!: string;
-
-}
-
-export class LoginUser {
-
-    email!: string;
-    password!: string;
+    region!: Region;
 
 }

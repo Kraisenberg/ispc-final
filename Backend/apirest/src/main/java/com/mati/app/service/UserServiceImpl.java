@@ -1,5 +1,6 @@
 package com.mati.app.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mati.app.entity.Region;
 import com.mati.app.entity.User;
 import com.mati.app.repository.UserRepository;
 
@@ -51,6 +53,13 @@ public class UserServiceImpl implements UserService {
 	public void deleteById(Long id) {
 		userRepository.deleteById(id);
 		
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Region> findAllRegiones() {
+		
+		return userRepository.findAllRegiones();
 	}
 
 	

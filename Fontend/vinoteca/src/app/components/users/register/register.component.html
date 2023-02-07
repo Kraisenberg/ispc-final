@@ -65,7 +65,7 @@
             </div>
 
             <div class="form-grup row">
-                <label for="password" class="col-form-label col-sm-2">Contraseña</label>
+                <label for="password" class="col-form-label col-sm-2">Fecha de creacion</label>
                 <div class="col-sm-6">
                     <input type="date" class="form-control" [(ngModel)]="user.createAt" name="createAt" required #createAt="ngModel"> 
                     <div class="alert alert-danger" *ngIf="createAt.invalid && (createAt.dirty || createAt.touched)">
@@ -75,6 +75,22 @@
                     </div>
                 </div>
             </div>
+
+            <div class="form-grup row">
+                <label for="password" class="col-form-label col-sm-2">Region</label>
+                <div class="col-sm-6">
+                    <select [compareWith]="compararRegion" class="form-control form-select" [(ngModel)]="user.region" name="region" required #region="ngModel">                                            
+                        <option [ngValue]="undefined">- Seleccionar una region -</option>
+                        <option *ngFor="let region of regiones" [ngValue]="region">{{region.nombre}}</option>
+                    </select> 
+                    <div class="alert alert-danger" *ngIf="region.invalid && (region.dirty || region.touched)">
+                        <div  *ngIf="region.errors?.['required']">
+                            Es requerido seleccionar una region
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="form-grup row">
                 <div class="col-sm-6">
@@ -94,33 +110,3 @@
 <br>
 
 
-<!-- 
-
-<form>
-
-    <div class="form-grup row">
-        <label for="email" class="col-form-label col-sm-2">Email</label>
-        <div class="col-sm-6">
-            <input type="email" class="form-control" [(ngModel)]="ulogin.email" name="email">
-        </div>
-    </div>
-
-    <div class="form-grup row">
-        <label for="password" class="col-form-label col-sm-2">Contraseña</label>
-        <div class="col-sm-6">
-            <input type="password" class="form-control" [(ngModel)]="ulogin.password" name="password">
-        </div>
-    </div>
-
-    <div class="form-grup row">
-        <div class="col-sm-6">
-            <button type="button" class="btn btn-primary" (click)="loguearse()" *ngIf="!user.id else elseBlock">Registrarse</button>
-            <ng-template #elseBlock>
-                <button type="button" class="btn btn-primary" (click)="loguearse()" >Editar</button>
-            </ng-template>
-        </div>
-    </div>
-
-</form>
-
--->
