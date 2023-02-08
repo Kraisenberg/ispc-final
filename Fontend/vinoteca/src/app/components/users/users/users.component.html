@@ -32,11 +32,11 @@
                             style="width: 64px; cursor: pointer;">
                         
                         <img (click)="abrirModal(usuario)" *ngIf="!usuario?.foto"
-                            src="../../../../assets/imagenes/no-usuario.png" alt="sin foto"
+                            src="http://localhost:8081/images/no-usuario.png" alt="sin foto"
                             style="width: 64px; cursor: pointer;">              
                                              
                     </td>
-                    <td>{{ usuario.name }}</td>
+                    <td>{{ usuario.name }}</td> 
                     <td>{{ usuario.lastname }}</td>
                     <td>{{ usuario.email }}</td>
                     <td>{{ usuario.password }}</td>
