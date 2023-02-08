@@ -22,13 +22,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 	
-		http.authorizeRequests().antMatchers( HttpMethod.GET,"/api/users").permitAll()
+		http.authorizeRequests().antMatchers( HttpMethod.GET,"/api/users","/api/users/page/**", "/api/uploads/img/**", "/images/**" ).permitAll()
 		
-		.antMatchers(HttpMethod.GET, "/api/users/{id}").permitAll()             //.hasAnyRole("USER", "ADMIN")
-		.antMatchers(HttpMethod.POST, "/api/users").permitAll()                 //.hasRole( "ADMIN")
-		.antMatchers(HttpMethod.PUT, "/api/users/{id}").permitAll()             //.hasRole("ADMIN")
-		.antMatchers("/api/users/**").permitAll()                               //.hasRole("ADMIN")
-		.antMatchers(HttpMethod.GET, "/images").permitAll()
+		/*
+		.antMatchers(HttpMethod.GET, "/api/users/{id}").hasAnyRole("USER", "ADMIN")
+		.antMatchers(HttpMethod.POST, "/api/users").hasRole( "ADMIN")
+		.antMatchers(HttpMethod.PUT, "/api/users/{id}").hasRole("ADMIN")
+		.antMatchers("/api/users/**").hasRole("ADMIN") 
+		.antMatchers(HttpMethod.GET, "/images").permitAll()		  
+		 */
 		 		
 		.anyRequest().authenticated().and().cors().configurationSource(corsConfigurationSource());
 	}
