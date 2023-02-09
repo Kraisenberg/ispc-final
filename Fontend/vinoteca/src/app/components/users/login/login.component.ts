@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit(): void {
+      if(this.authService.isAuthenticated()){
+        sweetAlert('Inicio de Seccion', `Hola ${this.authService.iusuario.username}, ya estas autenticado!` , 'info')
+        this.router.navigate(['/usuarios']);
+      }
   }
 
   login():void{
@@ -25,6 +29,7 @@ export class LoginComponent implements OnInit {
     if(this.iuser.username == null || this.iuser.password == null){
       sweetAlert('Error inicio Sesión', 'Usuario o Contraseña vacios', 'error');
     }
+
     this.authService.login(this.iuser).subscribe(response => {
       console.log(response);
 
@@ -40,7 +45,12 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/usuarios']);
       sweetAlert('Inicio de Seccion', `Hola ${usuario.username}, has iniciado sesíon correctamente!` , 'success')
       
-    });
+    }, err => {
+      if(err.status == 400){
+        sweetAlert('Error Inicio Sesion', "Usuario o clave incorrectos" , 'error')
+      }
+    }
+    );
 
 
   }

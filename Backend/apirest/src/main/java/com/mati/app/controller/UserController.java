@@ -47,8 +47,7 @@ import com.mati.app.entity.User;
 import com.mati.app.service.UploadFileService;
 import com.mati.app.service.UserService;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
-
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600 )
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -264,6 +263,7 @@ public class UserController {
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
+	
 	
 	@GetMapping("/uploads/img/{nombreFoto:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto){

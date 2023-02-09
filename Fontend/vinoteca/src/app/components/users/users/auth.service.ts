@@ -81,6 +81,27 @@ export class AuthService {
     return null;
   }
 
+  isAuthenticated(): boolean{
+    let payload = this.obtenerDatosToken(this.token)
+    if(payload != null && payload.user_name && payload.user_name.length > 0 ){
+      return true
+    }
+    return false
+  
+  }
+  
+  logout(): void{
+    this._token = null;
+    this._iusuario = null;
+    sessionStorage.clear(); 
+  }
+
+  hasRole(role: string){
+    if(this.iusuario.roles.includes(role)){
+      return true;
+    }
+    return false;
+  }
 
 }
 

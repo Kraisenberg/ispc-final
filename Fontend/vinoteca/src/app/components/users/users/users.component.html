@@ -4,7 +4,10 @@
 <div class="card border-primary mb-3" >
     <div class="card-header">Usuarios</div>
     <div class="card-body text-primary">
-      <h5 class="card-title">Listado de Usuarios</h5>
+        <div class="my-2 text-left">
+            <button *ngIf="authservice.hasRole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" [routerLink]="['/registro']" >Crear usuario</button>
+        </div>
+        <h5 class="card-title">Listado de Usuarios</h5>
         <div *ngIf="usuarios.length==0" class="alert alert-info">
             No hay registros en la base de datos
         </div>
@@ -13,7 +16,7 @@
 
             <thead>
                  <tr>
-                    <th>#</th>
+                    <th *ngIf="authservice.hasRole('ROLE_USER')">Imagen</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
@@ -26,7 +29,7 @@
            
             <tbody>
                 <tr *ngFor="let usuario of usuarios">
-                    <td>
+                    <td *ngIf="authservice.hasRole('ROLE_USER')">
                         <img (click)="abrirModal(usuario)" *ngIf="usuario?.foto"
                             src="http://localhost:8081/api/users/uploads/img/{{usuario.foto}}" alt="{{usuario.foto}}"
                             style="width: 64px; cursor: pointer;">
@@ -41,10 +44,10 @@
                     <td>{{ usuario.email }}</td>
                     <td>{{ usuario.password }}</td>
                     <td>{{ usuario.createAt }}</td>
-                    <td>
+                    <td *ngIf="authservice.hasRole('ROLE_ADMIN')">
                         <button type="button" name="button" [routerLink]="['/registro',usuario.id]" class="btn btn-primary">Editar</button>
                     </td>
-                    <td>
+                    <td *ngIf="authservice.hasRole('ROLE_ADMIN')">
                         <button type="button" name="eliminar" (click)="eliminarUsuario(usuario)" class="btn btn-danger">Eliminar</button>
                     </td> 
                 </tr>
