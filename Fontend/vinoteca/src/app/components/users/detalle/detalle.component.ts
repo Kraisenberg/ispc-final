@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from '../users/auth.service';
 import { User } from '../users/user';
 import { UserserviceService } from '../users/userservice.service';
 
@@ -17,7 +18,7 @@ export class DetalleComponent implements OnInit {
  
  fotoseleccionada!: File;
 
-  constructor( private userservice: UserserviceService, public modalService: ModalService) { }
+  constructor( private userservice: UserserviceService, public modalService: ModalService, public authService: AuthService) { }
 
   ngOnInit(): void {
     

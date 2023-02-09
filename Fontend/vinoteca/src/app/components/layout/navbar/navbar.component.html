@@ -19,7 +19,15 @@
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
-      <li><a routerLink="login" class="btn btn-outline-primary" >Iniciar Sesión</a>
+      <li *ngIf="!authService.isAuthenticated()"><a routerLink="login" class="btn btn-outline-primary" >Iniciar Sesión</a></li>
+
+      <li *ngIf="authService.isAuthenticated()" class="dropdown">
+        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{authService.iusuario.username}}
+        </a>   
+        <ul class="dropdown-menu">
+          <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesión</button>
+        </ul> 
       </li>
 
     </ul>

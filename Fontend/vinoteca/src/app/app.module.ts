@@ -8,7 +8,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { DashboardComponent } from './components/layout/dashboard/dashboard.component';
 import { ProductComponent } from './components/products/product/product.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsersComponent } from './components/users/users/users.component'
 import { UserserviceService } from './components/users/users/userservice.service';
 import { RegisterComponent } from './components/users/register/register.component';
@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/users/login/login.component';
 import { PaginatorComponent } from './components/layout/paginator/paginator.component';
 import { DetalleComponent } from './components/users/detalle/detalle.component';
+import { TokenInterceptor } from './components/interceptors/token.interceptor';
+import { AuthInterceptor } from './components/interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -39,7 +41,11 @@ import { DetalleComponent } from './components/users/detalle/detalle.component';
   ],
  // schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
 
-  providers: [UserserviceService],
+  providers: [
+    UserserviceService, 
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true },
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

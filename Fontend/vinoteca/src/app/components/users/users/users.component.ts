@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from '../detalle/modal.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-users',
@@ -16,8 +17,13 @@ export class UsersComponent implements OnInit {
   usuarios: User[] = [];
   paginator: any;
   usuarioSeleccionado: User = null; 
+  
 
-  constructor(private usuarioservice: UserserviceService, private activatedRoute: ActivatedRoute, private modalService :ModalService) { }
+  constructor(
+    private usuarioservice: UserserviceService, 
+    private activatedRoute: ActivatedRoute, 
+    private modalService :ModalService,
+    public authservice: AuthService){ }
 
   ngOnInit(): void {
     

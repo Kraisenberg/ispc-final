@@ -47,8 +47,7 @@ import com.mati.app.entity.User;
 import com.mati.app.service.UploadFileService;
 import com.mati.app.service.UserService;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
-
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600 )
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -84,7 +83,7 @@ public class UserController {
 	
 
 	//Create a new user
-	//@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN"})
 	@PostMapping
 	public ResponseEntity<?> create (@Valid @RequestBody User user, BindingResult result){
 		
@@ -120,7 +119,7 @@ public class UserController {
 	
 	
 	//Read an user
-	//@Secured({"ROLE_USER","ROLE_ADMIN"})
+	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	@GetMapping("/{id}")
 	public ResponseEntity<?> read(@PathVariable(value = "id") Long userId){
 		
@@ -149,7 +148,7 @@ public class UserController {
 	
 	
 	//Update a user
-	//@Secured("ROLE_ADMIN")
+	@Secured("ROLE_ADMIN")
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update (@Valid @RequestBody User userDetails, BindingResult result, @PathVariable(value = "id" )Long userId){	
 		
@@ -200,7 +199,7 @@ public class UserController {
 	}
 	
 	//Delete an user
-	//@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN"})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete (@PathVariable(value = "id") Long userId){		
 		
@@ -265,6 +264,7 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
+	
 	@GetMapping("/uploads/img/{nombreFoto:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto){
 
@@ -282,7 +282,7 @@ public class UserController {
 	
 	}
 	
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/regiones")
 	public List<Region> listarRegiones(){
 		return userService.findAllRegiones();
