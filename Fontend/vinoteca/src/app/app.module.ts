@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule,  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { PaginatorComponent } from './components/layout/paginator/paginator.comp
 import { DetalleComponent } from './components/users/detalle/detalle.component';
 import { TokenInterceptor } from './components/interceptors/token.interceptor';
 import { AuthInterceptor } from './components/interceptors/auth.interceptor';
+import { RegistrousuarioComponent } from './components/users/registrousuario/registrousuario.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AuthInterceptor } from './components/interceptors/auth.interceptor';
     RegisterComponent,
     LoginComponent,
     PaginatorComponent,
-    DetalleComponent
+    DetalleComponent,
+    RegistrousuarioComponent
   ],
   imports: [
     BrowserModule,

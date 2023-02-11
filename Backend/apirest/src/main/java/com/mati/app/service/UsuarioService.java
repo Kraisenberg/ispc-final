@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mati.app.entity.Role;
 import com.mati.app.entity.UsuarioS;
 import com.mati.app.repository.IUsuarioRepository;
 
@@ -51,6 +52,19 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 	public UsuarioS findByUsername(String username) {
 	
 		return usuarioDao.findByUsername(username);
+	}
+
+	@Override
+	public UsuarioS save(UsuarioS usuario) {
+		
+		return usuarioDao.save(usuario);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Role> findAllRoles() {
+	
+		return usuarioDao.findAllRoles();
 	}
 
 }

@@ -54,16 +54,12 @@ export class AuthService {
     
     console.log(params.toString());
     
-
     return this.http.post<any>(urlEndpoint, params.toString(), {headers: httpHeaders});
   }
 
   guardarIusuario(accessToken: string): void{
     let payload = this.obtenerDatosToken(accessToken);  
     this._iusuario = new Iuser();
-    this._iusuario.name = payload.name;
-    this._iusuario.lastname = payload.lastname;
-    this._iusuario.email = payload.email;
     this._iusuario.username = payload.user_name;
     this._iusuario.roles = payload.authorities;
     sessionStorage.setItem('usuario', JSON.stringify(this._iusuario))

@@ -42,6 +42,25 @@ public class UsuarioS implements Serializable {
 	@JoinTable(name="usuario_roles",joinColumns=@JoinColumn(name="usuario_id"),inverseJoinColumns=@JoinColumn(name="role_id"),uniqueConstraints={@UniqueConstraint(columnNames={"usuario_id" , "role_id"})})
 	private List<Role> roles;
 
+	
+	public UsuarioS() {
+		
+	}
+	
+	
+	public UsuarioS(String username, String password, Boolean enabled, String name, String lastname, String email) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.name = name;
+		this.lastname = lastname;
+		this.email = email;
+	}
+
+
+
+
 	public long getId() {
 		return id;
 	}

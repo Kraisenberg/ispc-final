@@ -7,17 +7,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.mati.app.entity.Region;
-import com.mati.app.entity.User;
+import com.mati.app.entity.Cliente;
 
-public interface UserService {
+public interface ClienteService {
 
-	public Iterable<User> findAll();
+	public Iterable<Cliente> findAll();
 	
-	public Page<User> findAll(Pageable pageable);
+	public Page<Cliente> findAll(Pageable pageable);
 	
-	public Optional<User> findById(Long id);
+	public Optional<Cliente> findById(Long id);
 	
-	public User save(User user);
+	public Cliente save(Cliente cliente);
 	
 	public void deleteById(Long id);
 	

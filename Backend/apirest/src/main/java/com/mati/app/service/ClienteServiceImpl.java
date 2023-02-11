@@ -12,46 +12,46 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mati.app.entity.Region;
-import com.mati.app.entity.User;
-import com.mati.app.repository.UserRepository;
+import com.mati.app.entity.Cliente;
+import com.mati.app.repository.ClienteRepository;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class ClienteServiceImpl implements ClienteService {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private ClienteRepository clienteRepository;
 	
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Iterable<User> findAll() {
+	public Iterable<Cliente> findAll() {
 		
-		return userRepository.findAll();
+		return clienteRepository.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Page<User> findAll(Pageable pageable) {
+	public Page<Cliente> findAll(Pageable pageable) {
 		
-		return userRepository.findAll(pageable);
+		return clienteRepository.findAll(pageable);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<User> findById(Long id) {		
-		return userRepository.findById(id);
+	public Optional<Cliente> findById(Long id) {		
+		return clienteRepository.findById(id);
 	}
 
 	@Override
 	@Transactional
-	public User save(User user) {
-		return userRepository.save(user);
+	public Cliente save(Cliente cliente) {
+		return clienteRepository.save(cliente);
 	}
 
 	@Override
 	@Transactional
 	public void deleteById(Long id) {
-		userRepository.deleteById(id);
+		clienteRepository.deleteById(id);
 		
 	}
 
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional(readOnly = true)
 	public List<Region> findAllRegiones() {
 		
-		return userRepository.findAllRegiones();
+		return clienteRepository.findAllRegiones();
 	}
 
 	

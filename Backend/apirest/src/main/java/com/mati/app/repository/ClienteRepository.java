@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.mati.app.entity.Region;
-import com.mati.app.entity.User;
+import com.mati.app.entity.Cliente;
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
 	@Query("from Region")
 	public List<Region> findAllRegiones();

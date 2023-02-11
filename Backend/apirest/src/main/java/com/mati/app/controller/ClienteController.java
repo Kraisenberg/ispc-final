@@ -43,23 +43,23 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mati.app.entity.Region;
-import com.mati.app.entity.User;
+import com.mati.app.entity.Cliente;
 import com.mati.app.service.UploadFileService;
-import com.mati.app.service.UserService;
+import com.mati.app.service.ClienteService;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600 )
 @RestController
 @RequestMapping("/api/users")
-public class UserController {
+public class ClienteController {
 
 	@Autowired
     private PasswordEncoder passwordEncoder;
 	
 	
-	private final Logger log = LoggerFactory.getLogger(UserController.class);
+	private final Logger log = LoggerFactory.getLogger(ClienteController.class);
 	
 	@Autowired
-	private UserService userService;
+	private ClienteService clienteService;
 	
 	@Autowired
 	private UploadFileService uploadFileService;
@@ -67,17 +67,17 @@ public class UserController {
 	
 	//Read All users
 	@GetMapping
-	public List<User> readAll(){
-		List<User> users = StreamSupport
-				.stream(userService.findAll().spliterator(), false)
+	public List<Cliente> readAll(){
+		List<Cliente> clientes = StreamSupport
+				.stream(clienteService.findAll().spliterator(), false)
 				.collect(Collectors.toList());
-		return users;
+		return clientes;
 	}
 	
 	
 	@GetMapping("/page/{page}")
-	public Page<User> readAll(@PathVariable Integer page){
-		return userService.findAll(PageRequest.of(page, 5));
+	public Page<Cliente> readAll(@PathVariable Integer page){
+		return clienteService.findAll(PageRequest.of(page, 5));
 	}
 	
 	
@@ -85,9 +85,9 @@ public class UserController {
 	//Create a new user
 	@Secured({"ROLE_ADMIN"})
 	@PostMapping
-	public ResponseEntity<?> create (@Valid @RequestBody User user, BindingResult result){
+	public ResponseEntity<?> create (@Valid @RequestBody Cliente cliente, BindingResult result){
 		
-		User userNew = null;
+		Cliente userNew = null;
 		Map<String, Object> response = new HashMap<>();
 		
 		if (result.hasErrors()) {
@@ -103,7 +103,7 @@ public class UserController {
 		}
 		
 		try {		
-			userNew = userService.save(user);			
+			userNew = clienteService.save(cliente);			
 		} catch(DataAccessException e){
 			
 			response.put("mensaje", "Error al realizar el insert en la base de datos");
@@ -125,11 +125,11 @@ public class UserController {
 		
 		
 		Map<String, Object> response = new HashMap<>();
-		Optional<User> oUser = null;
+		Optional<Cliente> oUser = null;
 		
 		try {
 			
-			oUser = userService.findById(userId);
+			oUser = clienteService.findById(userId);
 		}
 		catch(DataAccessException e){
 			response.put("mensaje", "Error: al consultar base de datos");
@@ -142,7 +142,7 @@ public class UserController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<Optional<User>>(oUser, HttpStatus.OK);		 
+		return new ResponseEntity<Optional<Cliente>>(oUser, HttpStatus.OK);		 
 	
 	}
 	
@@ -150,11 +150,11 @@ public class UserController {
 	//Update a user
 	@Secured("ROLE_ADMIN")
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update (@Valid @RequestBody User userDetails, BindingResult result, @PathVariable(value = "id" )Long userId){	
+	public ResponseEntity<?> update (@Valid @RequestBody Cliente userDetails, BindingResult result, @PathVariable(value = "id" )Long userId){	
 		
 		Map<String, Object> response = new HashMap<>();
-		Optional<User> user =  userService.findById(userId);
-		User userUpdated = null;
+		Optional<Cliente> cliente =  clienteService.findById(userId);
+		Cliente userUpdated = null;
 		
 		if (result.hasErrors()) {
 			
@@ -171,18 +171,18 @@ public class UserController {
 		
 		try {
 								
-			if(!user.isPresent()) {				
+			if(!cliente.isPresent()) {				
 				response.put("mensaje", "Error: Usuario no encontrado");
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 			}
 			
-			user.get().setName(userDetails.getName());
-			user.get().setLastname(userDetails.getLastname());
-			user.get().setEmail(userDetails.getEmail());
-			user.get().setPassword(passwordEncoder.encode(userDetails.getPassword()));
-			user.get().setRegion(userDetails.getRegion());
+			cliente.get().setName(userDetails.getName());
+			cliente.get().setLastname(userDetails.getLastname());
+			cliente.get().setEmail(userDetails.getEmail());
+			cliente.get().setPassword(passwordEncoder.encode(userDetails.getPassword()));
+			cliente.get().setRegion(userDetails.getRegion());
 			
-			userUpdated = userService.save(user.get());
+			userUpdated = clienteService.save(cliente.get());
 			
 		} catch(DataAccessException e) {
 			
@@ -207,10 +207,10 @@ public class UserController {
 		
 		try {
 			
-			Optional<User> user = userService.findById(userId);
-			String nombreFotoAnterior = user.get().getFoto();			
+			Optional<Cliente> cliente = clienteService.findById(userId);
+			String nombreFotoAnterior = cliente.get().getFoto();			
 			uploadFileService.eliminar(nombreFotoAnterior);		
-			userService.deleteById(userId);
+			clienteService.deleteById(userId);
 			
 		} catch(DataAccessException e) {
 			
@@ -228,7 +228,7 @@ public class UserController {
 	
 		Map<String, Object> response = new HashMap<>();
 		
-		Optional<User> user = userService.findById(id);
+		Optional<Cliente> cliente = clienteService.findById(id);
 		
 		
 		if(!archivo.isEmpty()) {
@@ -247,14 +247,14 @@ public class UserController {
 				
 			}
 			
-			String nombreFotoAnterior = user.get().getFoto();	
+			String nombreFotoAnterior = cliente.get().getFoto();	
 			
 			uploadFileService.eliminar(nombreFotoAnterior);
 			
-			user.get().setFoto(nombreArchivo);
-			userService.save(user.get());
+			cliente.get().setFoto(nombreArchivo);
+			clienteService.save(cliente.get());
 			
-			response.put("usuario", user);
+			response.put("usuario", cliente);
 			response.put("mensaje", "Foto cargada con exito: " + nombreArchivo);
 			
 		}
@@ -285,7 +285,7 @@ public class UserController {
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/regiones")
 	public List<Region> listarRegiones(){
-		return userService.findAllRegiones();
+		return clienteService.findAllRegiones();
 	}
 	
 	
