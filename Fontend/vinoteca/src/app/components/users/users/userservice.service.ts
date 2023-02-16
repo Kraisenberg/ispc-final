@@ -12,7 +12,7 @@ import { Region } from './region';
 })
 export class UserserviceService {
 
-  private url:string = 'http://localhost:8081/api/users';
+  private url:string = 'http://localhost:8081/api/clientes';
  
   constructor(private http: HttpClient, private router: Router ) { }
 

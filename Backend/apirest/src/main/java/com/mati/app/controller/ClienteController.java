@@ -52,10 +52,7 @@ import com.mati.app.service.ClienteService;
 @RequestMapping("/api/users")
 public class ClienteController {
 
-	@Autowired
-    private PasswordEncoder passwordEncoder;
-	
-	
+
 	private final Logger log = LoggerFactory.getLogger(ClienteController.class);
 	
 	@Autowired
@@ -80,10 +77,8 @@ public class ClienteController {
 		return clienteService.findAll(PageRequest.of(page, 5));
 	}
 	
-	
 
 	//Create a new user
-	@Secured({"ROLE_ADMIN"})
 	@PostMapping
 	public ResponseEntity<?> create (@Valid @RequestBody Cliente cliente, BindingResult result){
 		
@@ -104,6 +99,7 @@ public class ClienteController {
 		
 		try {		
 			userNew = clienteService.save(cliente);			
+		
 		} catch(DataAccessException e){
 			
 			response.put("mensaje", "Error al realizar el insert en la base de datos");
@@ -119,7 +115,6 @@ public class ClienteController {
 	
 	
 	//Read an user
-	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	@GetMapping("/{id}")
 	public ResponseEntity<?> read(@PathVariable(value = "id") Long userId){
 		
@@ -148,7 +143,6 @@ public class ClienteController {
 	
 	
 	//Update a user
-	@Secured("ROLE_ADMIN")
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update (@Valid @RequestBody Cliente userDetails, BindingResult result, @PathVariable(value = "id" )Long userId){	
 		
@@ -179,7 +173,7 @@ public class ClienteController {
 			cliente.get().setName(userDetails.getName());
 			cliente.get().setLastname(userDetails.getLastname());
 			cliente.get().setEmail(userDetails.getEmail());
-			cliente.get().setPassword(passwordEncoder.encode(userDetails.getPassword()));
+			cliente.get().setPassword((userDetails.getPassword()));
 			cliente.get().setRegion(userDetails.getRegion());
 			
 			userUpdated = clienteService.save(cliente.get());
@@ -199,7 +193,6 @@ public class ClienteController {
 	}
 	
 	//Delete an user
-	@Secured({"ROLE_ADMIN"})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete (@PathVariable(value = "id") Long userId){		
 		
@@ -282,7 +275,6 @@ public class ClienteController {
 	
 	}
 	
-	@Secured("ROLE_ADMIN")
 	@GetMapping("/regiones")
 	public List<Region> listarRegiones(){
 		return clienteService.findAllRegiones();

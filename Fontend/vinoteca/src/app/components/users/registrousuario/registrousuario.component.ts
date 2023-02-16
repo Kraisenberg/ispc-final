@@ -10,11 +10,14 @@ export class RegistrousuarioComponent implements OnInit {
 
   titulo: string = "Registro de administradores"
 
-  user: Iuser;
+  user!: Iuser;
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
+
 
 }

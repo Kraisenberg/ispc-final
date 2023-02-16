@@ -12,12 +12,11 @@ const routes: Routes = [
   
   {path:'usuarios', component: UsersComponent, pathMatch:'full' },
   {path:'usuarios/page/:page', component: UsersComponent, pathMatch: 'full' },
-  {path:'guardar', component: RegisterComponent , canActivate:[AuthGuard, RoleGuard], data: {role:'ROLE_ADMIN'}  },
-  {path:'guardar/:id', component: RegisterComponent , canActivate:[AuthGuard, RoleGuard], data: {role:'ROLE_ADMIN'} },
+  {path:'guardar', component: RegisterComponent    }, //canActivate:[AuthGuard, RoleGuard], data: {role:'ROLE_ADMIN'}
+  {path:'guardar/:id', component: RegisterComponent }, //canActivate:[AuthGuard, RoleGuard], data: {role:'ROLE_ADMIN'}
   {path:'login', component: LoginComponent },
   {path:'registro', component: RegistrousuarioComponent},
   
-
 ];
 
 @NgModule({
