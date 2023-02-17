@@ -1,0 +1,37 @@
+<p>login works!</p>
+
+<div class="container">
+    <h2>Iniciar Sesión</h2>
+    <form #loginform="ngForm" (ngSubmit)="loginUser()">
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control"  placeholder="Enter email" name="email" [(ngModel)]="user.email" required email #email="ngModel"
+        [class.is-invalid]="email.invalid && email.touched && email.dirty"
+        >
+        <div class="text-danger" *ngIf="email.invalid && (email.touched || email.dirty) "> 
+            <small  *ngIf="email.errors?.['required']">
+                Correo es requerido
+            </small >
+            <small   *ngIf="email.errors?.['email']">
+                Formato de correo invalido
+            </small >
+        </div>
+        
+      
+    </div>
+      <div class="form-group">
+        <label for="pwd">Contraseña:</label>
+        <input type="password" class="form-control"  placeholder="Enter password" name="password" [(ngModel)]="user.password" required password #password="ngModel"
+        minlength="4"
+        [class.is-invalid]="password.invalid && (email.touched || email.dirty)"
+        >
+        <small class="text-danger" *ngIf="password.invalid && (email.touched || email.dirty)">Contraseña debe contener al menos 4 caracteres</small>
+      </div>
+      <button type="submit" class="btn btn-primary mt-2" [disabled]="!loginform.form.valid" >Iniciar Sesión</button>
+    </form>
+    <small class="cursor.hand" >¿No tienes tu cuenta?<strong routerLink="/registrarse" style="cursor: pointer" > Has click aquí para registrarte.</strong> </small>
+
+  </div>
+
+  
