@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nabar',
@@ -7,22 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NabarComponent implements OnInit {
 
-  constructor() { }
+  constructor( public authservice : AuthService) { }
 
   ngOnInit(): void {
+    
+  }
+
+  ngOnchnges(){
+    this.isAuthenticated()
   }
 
   isAuthenticated():boolean
   {
-    let auth = sessionStorage.getItem("usuario")
-    if(auth != (null || undefined )){
-      return true;
-    }
-    return false;
+    return this.authservice.isAuthenticated();
   }
 
   logout(){
     sessionStorage.clear();
   }
+
+  
+
 
 }

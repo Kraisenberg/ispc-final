@@ -10,4 +10,5 @@ public interface RegistrationRepository extends JpaRepository<User, Integer>{
 	
 	public User findByEmailAndPassword(String email, String password);
 	
+	
 }
