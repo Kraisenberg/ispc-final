@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <!--
+            
             <div class="form-grup row">
                 <label for="lastname" class="col-form-label col-sm-2">Apellido</label>
                 <div class="col-sm-6">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            -->
+           
 
             <div class="form-grup row">
                 <label for="email" class="col-form-label col-sm-2">Email</label>
@@ -69,21 +69,21 @@
                 </div>
             </div>
 
-            <!--
+            
             <div class="form-grup row">
                 <label for="password" class="col-form-label col-sm-2">Fecha de creacion</label>
                 <div class="col-sm-6">
-                    <input type="date" class="form-control" [(ngModel)]="user.createAt" name="createAt" required #createAt="ngModel"> 
-                    <div class="alert alert-danger" *ngIf="createAt.invalid && (createAt.dirty || createAt.touched)">
-                        <div  *ngIf="createAt.errors?.['required']">
-                            Fecha creacion es requerida
+                    <input type="date" class="form-control" [(ngModel)]="user.dateofbirth" name="dateofbirth" required #dateofbirth="ngModel"> 
+                    <div class="alert alert-danger" *ngIf="dateofbirth.invalid && (dateofbirth.dirty || dateofbirth.touched)">
+                        <div  *ngIf="dateofbirth.errors?.['required']">
+                            Fecha nacimiento es requerida
                         </div>
                     </div>
                 </div>
             </div>
 
            
-
+            <!----
             <div class="form-grup row">
                 <label for="password" class="col-form-label col-sm-2">Region</label>
                 <div class="col-sm-6">
@@ -104,7 +104,7 @@
                 <div class="col-sm-6">
                     <button type="button" class="btn btn-primary" (click)="createUser()" [disabled]="!registroform.form.valid" *ngIf="!user.id else elseBlock">Registrarse</button>
                     <ng-template #elseBlock>
-                       <!--<button type="button" class="btn btn-primary" (click)="actualizarUsuario()" [disabled]="!registroform.form.valid">Actualizar</button> --> 
+                       <button type="button" class="btn btn-primary" (click)="actualizarUsuario()" [disabled]="!registroform.form.valid">Actualizar</button> 
                     </ng-template>
                 </div>
             </div>
