@@ -46,7 +46,7 @@
                     <td>{{ usuario.password }}</td>
                     <td>{{ usuario.dateofbirth}}</td>
                     <td>
-                        <button type="button" name="button" [routerLink]="['/registro',usuario.id]" class="btn btn-primary">Editar</button>
+                        <button type="button" name="button" [routerLink]="['/registrarse',usuario.id]" class="btn btn-primary">Editar</button>
                     </td>
                     <td>
                         <button type="button" name="eliminar"  class="btn btn-danger" (click)="eliminarUsuario(usuario)" >Eliminar</button>
