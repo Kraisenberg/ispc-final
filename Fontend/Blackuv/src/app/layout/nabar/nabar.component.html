@@ -22,10 +22,10 @@
             <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{authservice.getuserInSession()}}
             </a>            
-            <ul class="dropdown-menu">
-              
-              <button class="dropdown-item">Carrito</button>
-              <button class="dropdown-item">Perfil</button>
+            <ul class="dropdown-menu">           
+              <button *ngIf="authservice.isAdmin()" class="dropdown-item" routerLink="/listaproductos"><span class="p-2 badge bg-info border border-dark rounded-circle"><span class="visually-hidden"></span></span> Productos</button>
+              <button *ngIf="authservice.isAdmin()" class="dropdown-item" routerLink="/listausuarios"><span class="p-2 badge bg-info border border-dark rounded-circle"><span class="visually-hidden"></span></span> Usuarios</button>
+              <button class="dropdown-item" routerLink="/registrarse/{{authservice.getIdSession()}}">Actualizar Perfil</button>
               <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesión</button>
               
             </ul> 

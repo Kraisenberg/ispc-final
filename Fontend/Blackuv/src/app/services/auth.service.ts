@@ -10,7 +10,7 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     
-    let auth = sessionStorage.getItem("username")
+    let auth = sessionStorage.getItem("name")
     if((auth != null) ){
       return true;
     }
@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   getuserInSession(): string{
-    let usu:string = (sessionStorage.getItem("username")) as string;
+    let usu:string = (sessionStorage.getItem("name")) as string;
     return usu;
   }
     
@@ -30,6 +30,10 @@ export class AuthService {
     return false;
   }
 
+  getIdSession():string{
+    let usu:string = (sessionStorage.getItem("id")) as string;
+    return usu;
+  }
 
 }
 
