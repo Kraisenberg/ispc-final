@@ -8,13 +8,15 @@ import { LoginComponent } from './componentes/login/login.component';
 import { NabarComponent } from './layout/nabar/nabar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuarios.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    NabarComponent
+    NabarComponent,
+    ListaUsuariosComponent
   ],
   imports: [
     BrowserModule,

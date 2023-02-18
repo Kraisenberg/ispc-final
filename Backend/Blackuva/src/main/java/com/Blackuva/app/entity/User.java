@@ -1,6 +1,7 @@
 package com.Blackuva.app.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.Blackuva.app.enums.RoleEnum;
 
@@ -23,7 +24,11 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String username;
+	private String name;
+	
+	private String lastname;
+	
+	private Date dateofbirth;
 	
 	private String email;
 	
@@ -32,15 +37,20 @@ public class User implements Serializable{
 	private String role;
 	
 	
+	
+	
+	
 	public User() {}
 	
-	public User(int id,String username,  String email, String password, String role) {
+	public User(int id,String name,  String email, String password, String role, String lastname, Date dateofbirth ) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.role = role;
+		this.dateofbirth = dateofbirth;
+		this.lastname = lastname;
 	}
 
 	
@@ -53,12 +63,13 @@ public class User implements Serializable{
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+
+	public String getName() {
+		return name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -83,6 +94,22 @@ public class User implements Serializable{
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public Date getDateofbirth() {
+		return dateofbirth;
+	}
+
+	public void setDateofbirth(Date dateofbirth) {
+		this.dateofbirth = dateofbirth;
 	}
 
 	

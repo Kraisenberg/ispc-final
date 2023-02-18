@@ -1,0 +1,1 @@
+insert into users (dateofbirth, email, lastname, name, password, role) values ('1998-02-14', 'benito@mail', 'gutierrez', 'benito', '1234', 'ROLE_ADMIN')

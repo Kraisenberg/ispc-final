@@ -14,15 +14,15 @@
 
         <form #registroform="ngForm"> 
             <div class="form-grup row">
-                <label for="name" class="col-form-label col-sm-2">Apodo</label>
+                <label for="name" class="col-form-label col-sm-2">Nombre</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="user.username" name="username" required  minlength="4" #username="ngModel"> 
-                    <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
-                        <div  *ngIf="username.errors?.['required']">
-                            Apodo es requerido
+                    <input type="text" class="form-control" [(ngModel)]="user.name" name="name" required  minlength="4" #name="ngModel"> 
+                    <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <div  *ngIf="name.errors?.['required']">
+                            Nombre
                         </div>
-                        <div *ngIf="username.errors?.['minlength']">
-                            El Apodo debe tener al menos 4 caracteres
+                        <div *ngIf="name.errors?.['minlength']">
+                            El Nombre debe tener al menos 4 caracteres
                         </div>
                     </div>
                 </div>
