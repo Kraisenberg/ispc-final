@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/class/user';
 import { RegistrationService } from 'src/app/services/registration.service';
+import  Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +22,10 @@ export class LoginComponent implements OnInit {
     
     this._service.loginUserFromRemote(this.user).subscribe(
       data => {
-        sessionStorage.setItem("username", data.username);
+        sessionStorage.setItem("name", data.name);
         sessionStorage.setItem("role", data.role);
-        //camibiar por un sweet alert
+        sessionStorage.setItem( "id", data.id);
+        Swal.fire('Inicio de Sesion', 'Bienvenidio '+ data.name );
         console.log("Responce recived");
         this._router.navigate(['']);
       },
@@ -36,3 +38,5 @@ export class LoginComponent implements OnInit {
 
 
 }
+
+
