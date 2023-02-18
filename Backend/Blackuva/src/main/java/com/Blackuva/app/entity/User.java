@@ -1,7 +1,8 @@
 package com.Blackuva.app.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+
+import java.sql.Date;
 
 import com.Blackuva.app.enums.RoleEnum;
 

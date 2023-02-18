@@ -7,6 +7,7 @@ import { RegisterComponent } from './componentes/register/register.component';
 const routes: Routes = [
   {path:'login', component: LoginComponent, pathMatch:'full' },
   {path: 'registrarse', component: RegisterComponent, pathMatch: 'full'},
+  {path: 'registrarse/:id', component: RegisterComponent, pathMatch: 'full'},
   {path: 'listausuarios', component: ListaUsuariosComponent, pathMatch: 'full'}
 
 ];

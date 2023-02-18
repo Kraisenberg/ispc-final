@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import {HttpClient } from "@angular/common/http"
 import { User } from '../class/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,9 @@ export class RegistrationService {
   arobj: any;
   userlist : User[] = [] || undefined;
 
-
-
   private url: string = "http://localhost:8081/blackuva/users/"
 
-  constructor(private _http : HttpClient) { }
+  constructor(private _http : HttpClient, private router: Router ) { }
 
   public loginUserFromRemote(user: User):Observable<any>{
     
@@ -37,7 +36,7 @@ export class RegistrationService {
     return this._http.get<User>(`${this.url}${id}`).pipe(
       catchError(e =>{ 
         if(e.status != 401 && e.error.mensaje){
-          //this.router.navigate(['/usuarios'])
+          this.router.navigate(['/listausuarios'])
           console.error(e.error.mensaje);
         }
         return throwError(e);
@@ -57,7 +56,7 @@ export class RegistrationService {
   }
 
   updateUsuario(user: User): Observable<User>{
-    return this._http.put<User>(`${this.url}/${user.id}`,user).pipe(
+    return this._http.put<User>(`${this.url}${user.id}`,user).pipe(
       catchError(e => {
         if(e.status == 400){
           return throwError(e)
