@@ -38,9 +38,7 @@ public class User implements Serializable{
 	private String role;
 	
 	
-	
-	
-	
+
 	public User() {}
 	
 	public User(int id,String name,  String email, String password, String role, String lastname, Date dateofbirth ) {

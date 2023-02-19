@@ -17,11 +17,11 @@
 
             <thead>
                  <tr>
-                    <th>Imagen</th>
+                   
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
-                    <th>Contraseña</th>
+                    <th>Rol</th>
                     <th>Creado</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
@@ -30,20 +30,11 @@
            
             <tbody>
                 <tr *ngFor="let usuario of usuarios">
-                    <td>
-                        <img 
-                            src="http://localhost:8081/api/users/uploads/img/" alt=""
-                            style="width: 64px; cursor: pointer;">
-                        
-                        <img 
-                            src="http://localhost:8081/images/no-usuario.png" alt="sin foto"
-                            style="width: 64px; cursor: pointer;">              
-                                             
-                    </td>
+
                     <td>{{ usuario.name }}</td> 
                     <td>{{ usuario.lastname }}</td>
                     <td>{{ usuario.email }}</td>
-                    <td>{{ usuario.password }}</td>
+                    <td>{{ usuario.role}}</td>
                     <td>{{ usuario.dateofbirth}}</td>
                     <td>
                         <button type="button" name="button" [routerLink]="['/registrarse',usuario.id]" class="btn btn-primary">Editar</button>
