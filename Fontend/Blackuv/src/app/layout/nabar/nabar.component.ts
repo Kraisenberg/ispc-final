@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nabar',
@@ -8,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NabarComponent implements OnInit {
 
-  constructor( public authservice : AuthService) { }
+  constructor( public authservice : AuthService, private router : Router  ) { }
 
   ngOnInit(): void {
     
@@ -24,10 +26,11 @@ export class NabarComponent implements OnInit {
   }
 
   logout(){
+    Swal.fire('Cerrar Sesión', 'Cierre de session exitoso', 'success');
     sessionStorage.clear();
+    this.router.navigate([' '])
   }
 
-  
-
-
 }
+
+

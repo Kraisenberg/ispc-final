@@ -9,7 +9,7 @@
 -->
 
 <div class="card bg-dark text-white">
-    <div class="card-header"> Registro de Usuarios </div>
+    <div class="card-header text-center"> <h4>{{titulo()}}</h4></div>
     <div class="card-body">
 
         <form #registroform="ngForm"> 
@@ -71,7 +71,7 @@
 
             
             <div class="form-grup row">
-                <label for="password" class="col-form-label col-sm-2">Fecha de creacion</label>
+                <label for="password" class="col-form-label col-sm-2">Fecha de Nacimiento</label>
                 <div class="col-sm-6">
                     <input type="date" class="form-control" [(ngModel)]="user.dateofbirth" name="dateofbirth" required #dateofbirth="ngModel"> 
                     <div class="alert alert-danger" *ngIf="dateofbirth.invalid && (dateofbirth.dirty || dateofbirth.touched)">
@@ -83,22 +83,23 @@
             </div>
 
            
-            <!----
+            
             <div class="form-grup row">
-                <label for="password" class="col-form-label col-sm-2">Region</label>
+                <label for="password" class="col-form-label col-sm-2">Rol</label>
                 <div class="col-sm-6">
-                    <select [compareWith]="compararRegion" class="form-control form-select" [(ngModel)]="user.region" name="region" required #region="ngModel">                                            
-                        <option [ngValue]="undefined">- Seleccionar una region -</option>
-                        <option *ngFor="let region of regiones" [ngValue]="region">{{region.nombre}}</option>
+                    <select  class="form-control form-select" [(ngModel)]="user.role" name="role" required #role="ngModel">                                            
+                        <option [ngValue]="undefined">- Seleccionar un Rol -</option>
+                        <option> ROLE_ADMIN</option>
+                        <option> ROLE_USER</option>
                     </select> 
-                    <div class="alert alert-danger" *ngIf="region.invalid && (region.dirty || region.touched)">
-                        <div  *ngIf="region.errors?.['required']">
-                            Es requerido seleccionar una region
+                    <div class="alert alert-danger" *ngIf="role.invalid && (role.dirty || role.touched)">
+                        <div  *ngIf="role.errors?.['required']">
+                            Es requerido seleccionar un rol
                         </div>
                     </div>
                 </div>
             </div>
-            -->
+           
 
             <div class="form-grup row">
                 <div class="col-sm-6">
