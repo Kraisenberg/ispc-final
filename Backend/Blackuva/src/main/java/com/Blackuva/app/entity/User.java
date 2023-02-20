@@ -3,14 +3,18 @@ package com.Blackuva.app.entity;
 import java.io.Serializable;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.Blackuva.app.enums.RoleEnum;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -37,9 +41,15 @@ public class User implements Serializable{
 	
 	private String role;
 	
+
+	@JsonIgnoreProperties({"user","hibernateLazyInitializer", "handler"})
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="user", cascade=CascadeType.ALL)
+	private List<Factura> facturas;
 	
 
-	public User() {}
+	public User() {
+		this.facturas = new ArrayList<>();
+	}
 	
 	public User(int id,String name,  String email, String password, String role, String lastname, Date dateofbirth ) {
 		super();
@@ -109,6 +119,14 @@ public class User implements Serializable{
 
 	public void setDateofbirth(Date dateofbirth) {
 		this.dateofbirth = dateofbirth;
+	}
+
+	public List<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(List<Factura> facturas) {
+		this.facturas = facturas;
 	}
 
 	
