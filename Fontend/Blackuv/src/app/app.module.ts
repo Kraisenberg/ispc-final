@@ -9,6 +9,8 @@ import { NabarComponent } from './layout/nabar/nabar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuarios.component';
+import { DashboardComponent } from './layout/dashboard/dashboard.component';
+import { DetalleFacturaComponent } from './componentes/facturas/detalle-factura.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuar
     RegisterComponent,
     LoginComponent,
     NabarComponent,
-    ListaUsuariosComponent
+    ListaUsuariosComponent,
+    DashboardComponent,
+    DetalleFacturaComponent
   ],
   imports: [
     BrowserModule,

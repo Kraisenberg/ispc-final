@@ -1,3 +1,5 @@
+import { Factura } from "./factura";
+
 export class User {
     id!: number;
     email!: string;
@@ -6,6 +8,8 @@ export class User {
     password!: string;
     role!: string;
     dateofbirth!: Date;
+    facturas: Array<Factura> = []
+
 
 constructor(){}
 

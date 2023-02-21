@@ -1,19 +1,12 @@
-<p>lista-usuarios works!</p>
-
-<!-- <app-detalle *ngIf="usuarioSeleccionado" [user]="usuarioSeleccionado"></app-detalle> -->
-
 <div class="card border-primary mb-3" >
     <div class="card-header">Usuarios</div>
     <div class="card-body text-primary">
-        <div class="my-2 text-left">
-            <button  class="btn btn-rounded btn-primary" [routerLink]="['/registro']" >Crear usuario</button>
-        </div>
         <h5 class="card-title">Listado de Usuarios</h5>
         <div *ngIf="usuarios.length==0" class="alert alert-info">
             No hay registros en la base de datos
         </div>
       
-        <table class="table table-bordered table-striped" *ngIf="usuarios.length>0">
+        <table class="table table-bordered table-striped" *ngIf="usuarios.length>0"> 
 
             <thead>
                  <tr>
@@ -46,8 +39,6 @@
             </tbody>
             
         </table>
-
-       <!-- <paginator-nav *ngIf="paginator" [paginator]= "paginator" ></paginator-nav> -->
 
     </div>
   </div>

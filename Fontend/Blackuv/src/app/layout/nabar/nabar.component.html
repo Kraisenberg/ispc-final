@@ -28,7 +28,7 @@
             <ul class="dropdown-menu">           
               <button *ngIf="authservice.isAdmin()" class="dropdown-item" routerLink="/listaproductos"><span class="p-2 badge bg-info border border-dark rounded-circle"><span class="visually-hidden"></span></span> Productos</button>
               <button *ngIf="authservice.isAdmin()" class="dropdown-item" routerLink="/listausuarios"><span class="p-2 badge bg-info border border-dark rounded-circle"><span class="visually-hidden"></span></span> Usuarios</button>
-              <button class="dropdown-item" routerLink="/registrarse/{{authservice.getIdSession()}}">Actualizar Perfil</button>
+              <button class="dropdown-item" routerLink="/dashboard">Mi Perfil</button>
               <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesión</button>
               
             </ul> 

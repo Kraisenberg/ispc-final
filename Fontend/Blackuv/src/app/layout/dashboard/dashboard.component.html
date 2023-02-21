@@ -1,0 +1,40 @@
+<p>dashboard works!</p>
+
+<br>
+<h2 routerLink="/registrarse/{{authservice.getIdSession()}}" >Actualizar datos de usuario</h2>
+<br>
+<h2>Listado de Facturas</h2>
+
+<div class="alert alert-info my-4" *ngIf="user.facturas.length == 0">
+    {{user.name.toUpperCase() }} {{user.lastname.toUpperCase() }}, usted no posee facturas actualmente.
+</div>
+
+<table class="table table-bordered table-striped my-4" *ngIf="user.facturas.length > 0">
+    <thead>
+        <tr>
+            <th>Id Factura</th>
+            <th>Descripcion</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Detalle</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let factura of user.facturas">
+            <td>{{factura.id}}</td>
+            <td>{{factura.descripcion}}</td>
+            <td>{{factura.createAt}}</td>
+            <td>{{factura.total}}</td>
+            <td>
+                <button class="btn btn-primary btm-sm" type="button" [routerLink]="['/facturas/', factura.id]">
+                    Ver
+                </button>
+            </td>
+            <td><button class="btn btn-danger btn-sm" type="button" (click)="delete(factura)">Eliminar</button> </td>
+        </tr>
+
+
+    </tbody>
+</table>
+
