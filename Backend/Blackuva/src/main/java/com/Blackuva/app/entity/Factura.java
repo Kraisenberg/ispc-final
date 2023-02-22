@@ -53,7 +53,6 @@ public class Factura implements Serializable{
 	}
 	
 	
-	
 	@PrePersist
 	public void prePersist() {
 		this.createAt = new Date();

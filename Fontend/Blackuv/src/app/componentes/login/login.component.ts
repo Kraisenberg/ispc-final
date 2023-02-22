@@ -25,13 +25,13 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("name", data.name);
         sessionStorage.setItem("role", data.role);
         sessionStorage.setItem( "id", data.id);
-        Swal.fire('Inicio de Sesion', 'Bienvenidio '+ data.name );
+        Swal.fire('Inicio de Sesion', 'Bienvenidio '+ data.name , 'success');
         console.log("Responce recived");
-        this._router.navigate(['']);
+        this._router.navigate(['/catalogo']);
       },
       error => {
         console.log("Exception occured");
-        alert("Credenciales incorrectas");  
+        Swal.fire('Error', 'Credenciales incorrectas', 'error');  
       }
       );
   }

@@ -6,7 +6,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RegistrationService } from 'src/app/services/registration.service';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-lista-usuarios',
   templateUrl: './lista-usuarios.component.html',
@@ -69,11 +68,6 @@ export class ListaUsuariosComponent implements OnInit {
       }
     })
   }
-
-
-
-
-
 
 
 

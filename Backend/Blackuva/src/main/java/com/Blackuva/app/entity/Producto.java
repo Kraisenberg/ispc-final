@@ -39,6 +39,22 @@ public class Producto implements Serializable{
 	}
 
 	
+	
+	
+	public Producto() {}
+	
+	
+	public Producto(Long id, String nombre, Double precio, String foto) {
+
+		this.id = id;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.foto = foto;
+	}
+
+
+
+
 	public Long getId() {
 		return id;
 	}
