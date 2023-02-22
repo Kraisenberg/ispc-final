@@ -39,8 +39,6 @@ public class Producto implements Serializable{
 	}
 
 	
-	
-	
 	public Producto() {}
 	
 	
