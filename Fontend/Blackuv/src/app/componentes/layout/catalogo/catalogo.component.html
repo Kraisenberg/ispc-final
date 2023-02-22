@@ -1,0 +1,35 @@
+<div class="card border-primary mb-3 my-3" >
+    <div class="card-header text-center"><h4>Catalogo de productos</h4></div>
+    
+    <div class="card-body">
+        
+        <div *ngFor="let producto of productos ">
+            <div class="card mb-3" >
+                <div class="row g-0">
+                  <div class="col-md-4">                   
+                    <img *ngIf="producto?.foto"
+                            src="http://localhost:8081/api/users/uploads/img/{{producto.foto}}" alt="{{producto.foto}}"
+                            class="img-fluid rounded-start">
+                        
+                        <img *ngIf="!producto?.foto"
+                            src="http://localhost:8081/images/no-image.png" alt="sin foto"
+                            class="img-fluid rounded-start">        
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{producto.nombre}}</h5>
+                      <p class="card-text">Oferta especial online {{producto.nombre}}, a tan solo ${{producto.precio}} </p>
+                      <a href="#" class="btn btn-primary">Añadir al carrito</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
