@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs';
+import { Factura } from 'src/app/class/factura';
+import { ItemFactura } from 'src/app/class/item-factura';
 import { Producto } from 'src/app/class/producto';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductoService } from 'src/app/services/producto.service';
@@ -15,8 +17,12 @@ export class CatalogoComponent implements OnInit {
 
   productos: Producto[] = []
 
-  contador: number[] = [1 ,2,3,4,5,6,7]
-  
+  carrito: ItemFactura[] = []
+
+  factura: Factura =  new Factura();
+
+  //productoSelec: Producto;
+
   constructor(
     public authservice: AuthService,
     private productoService: ProductoService,
@@ -29,40 +35,15 @@ export class CatalogoComponent implements OnInit {
 
   }
 
+  ngOnChanges():void{
 
-  eliminarProducto(producto: Producto){
-    Swal.fire({
-      title: 'Estas seguro?',
-      text: `¿Seguro que desea eliminar el producto ${producto.nombre}?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, Elimínalo',
-      cancelButtonText: 'No de momento'
-    }).then((result : any) => {
-      if (result.isConfirmed) {
-        this.productoService.deleteProducto(producto.id).subscribe(
-          () => {
-            this.productos = this.productos.filter(cli => cli !== producto)
-            Swal.fire('Eliminado!',`El usuario ${producto.nombre} fué eliminado exitosamente.`,'success')})
-      }
-    })
   }
 
   getProductos(){
 
     this.activatedRoute.paramMap.subscribe( params =>
       {
-        this.productoService.getProductos().pipe(
-          tap(response => {
-            console.log('Usuariocomponent: tap 2');
-            let arobj :any = response
-            let userlist: Producto[] = (arobj) as Producto[]
-            (userlist).forEach(producto => {console.log(producto.nombre); })
-         })
-       )
-        .subscribe(
+        this.productoService.getProductos().subscribe(
           response => {
             let arobj :any = response
             let userlist: Producto[] = (arobj) as Producto[]
@@ -71,10 +52,18 @@ export class CatalogoComponent implements OnInit {
           });
         })
 
-
-
   }
 
+  agregarCarrito(producto: Producto): void{
+
+    let itm =  new ItemFactura();
+    itm.producto = producto;
+    itm.importe = producto.precio 
+    this.carrito.push(itm);
+    console.log("agregui algoaa" + itm);
+    
+    
+  }
 
 
 

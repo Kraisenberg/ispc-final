@@ -10,7 +10,7 @@ import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { ListaProductosComponent } from './layout/lista-productos/lista-productos.component';
 
 const routes: Routes = [
-  {path:'login', component: LoginComponent, pathMatch:'full' },
+  {path: 'login', component: LoginComponent, pathMatch:'full' },
   {path: 'registrarse', component: RegisterComponent, pathMatch: 'full'},
   {path: 'registrarse/:id', component: RegisterComponent, pathMatch: 'full'},
   {path: 'listausuarios', component: ListaUsuariosComponent, pathMatch: 'full'},
@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'catalogo', component: CatalogoComponent, pathMatch: 'full'},
   {path: 'carrito', component: CarritoComponent, pathMatch: 'full'},
   {path: 'listaproductos', component: ListaProductosComponent, pathMatch: 'full'},
-  {path: '', component: CatalogoComponent, pathMatch: 'full'},
+  {path: ' ', component: CatalogoComponent, pathMatch: 'full'},
   
 
 ];

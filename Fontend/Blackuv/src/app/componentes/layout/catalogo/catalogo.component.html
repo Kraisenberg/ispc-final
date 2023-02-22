@@ -1,10 +1,19 @@
-<div class="card border-primary mb-3 my-3" >
-    <div class="card-header text-center"><h4>Catalogo de productos</h4></div>
-    
+<div class="container card border-primary mb-3 my-3">
+
+    <div class="card-body" *ngIf="authservice.isAuthenticated()">
+      <app-carrito [itemFactura]="carrito" ></app-carrito>
+    </div>
+
+    <div class="card-body alert alert-info my-4 text-center" *ngIf="!authservice.isAuthenticated()">
+        <p>Para poder agregar productos al carrito primero debes iniciar sesión</p>
+    </div>
+
+<div class="card-header text-center"><h4>Catalogo de productos</h4></div>
     <div class="card-body">
-        
+      
+     <div class="row">
         <div *ngFor="let producto of productos ">
-            <div class="card mb-3" >
+            <div class="card mb-3">
                 <div class="row g-0">
                   <div class="col-md-4">                   
                     <img *ngIf="producto?.foto"
@@ -15,16 +24,20 @@
                             src="http://localhost:8081/images/no-image.png" alt="sin foto"
                             class="img-fluid rounded-start">        
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8"> 
                     <div class="card-body">
                       <h5 class="card-title">{{producto.nombre}}</h5>
                       <p class="card-text">Oferta especial online {{producto.nombre}}, a tan solo ${{producto.precio}} </p>
-                      <a href="#" class="btn btn-primary">Añadir al carrito</a>
+                      <button type="button" (click)="agregarCarrito(producto)" class="btn btn-primary">Añadir al carrito</button>
                     </div>
                   </div>
                 </div>
               </div> 
         </div>
+      </div> 
+
+      
+ 
 
 
 
