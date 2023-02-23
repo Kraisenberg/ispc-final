@@ -50,11 +50,11 @@ export class CarritoService {
   }
 
   eliminarItemFactura(id: number):void{
-    console.log(this.carrito);
     
-    this.carrito = this.carrito.filter( (item: ItemFactura) =>{id !== item.producto.id })   
     
-    console.log(this.carrito);
+    this.carrito = this.carrito.filter( (item: ItemFactura) => id !== item.producto.id )   
+    
+    
     
   }
 

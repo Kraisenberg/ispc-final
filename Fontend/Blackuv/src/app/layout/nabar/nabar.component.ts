@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { CarritoService } from 'src/app/services/carrito.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,7 +11,10 @@ import Swal from 'sweetalert2';
 })
 export class NabarComponent implements OnInit {
 
-  constructor( public authservice : AuthService, private router : Router  ) { }
+  constructor( 
+    public authservice : AuthService,
+    public carritoService: CarritoService,
+    private router : Router  ) { }
 
   ngOnInit(): void {
     

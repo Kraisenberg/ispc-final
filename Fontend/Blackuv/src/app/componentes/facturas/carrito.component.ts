@@ -31,6 +31,10 @@ export class CarritoComponent implements OnInit {
     this.anadirItemFactura() ;   
   }
 
+  ngOnChanges(simpleChanges :SimpleChanges):void{
+    this.anadirItemFactura() 
+  }
+
 
   anadirItemFactura():void{
     this.factura.items = this.carritoService.carrito
@@ -51,7 +55,7 @@ export class CarritoComponent implements OnInit {
         }
         return item;
      })
-    
+     this.anadirItemFactura()
   }
 
   existeItem(id:number) :boolean{
@@ -70,6 +74,7 @@ export class CarritoComponent implements OnInit {
 
   eliminarItemFactura(id: number):void{
     this.carritoService.eliminarItemFactura(id)
+    this.anadirItemFactura() ;
     
   }
 
