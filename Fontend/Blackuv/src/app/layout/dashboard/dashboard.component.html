@@ -1,40 +1,54 @@
-<p>dashboard works!</p>
+<div class="card border-primary mb-4 my-4" >
+    <div class="card-header text-center"><h4>Panel de Usuario</h4></div>
+   
+    <div class="card-body">
 
-<br>
-<h2 routerLink="/registrarse/{{authservice.getIdSession()}}" >Actualizar datos de usuario</h2>
-<br>
-<h2>Listado de Facturas</h2>
+        <p class="alert alert-info">Hola {{authservice.getuserInSession()}}! Aqui podras consultar tus facturas o actualizar tus datos</p>
 
-<div class="alert alert-info my-4" *ngIf="user.facturas.length == 0">
-    {{user.name.toUpperCase() }} {{user.lastname.toUpperCase() }}, usted no posee facturas actualmente.
+        <button class="btn btn-primary mb-4" routerLink="/registrarse/{{authservice.getIdSession()}}">Actualizar mis datos de usuario</button>
+
+        <h4>Listado de Facturas</h4>
+
+        <div class="alert alert-info my-4" *ngIf="user.facturas.length == 0">
+            {{user.name.toUpperCase() }} {{user.lastname.toUpperCase() }}, usted no posee facturas actualmente.
+        </div>
+        
+        <table class="table table-bordered table-striped my-4" *ngIf="user.facturas.length > 0">
+            <thead>
+                <tr>
+                    <th>Id Factura</th>
+                    <th>Descripcion</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Detalle</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let factura of user.facturas">
+                    <td>{{factura.id}}</td>
+                    <td>{{factura.descripcion}}</td>
+                    <td>{{factura.createAt}}</td>
+                    <td>{{factura.total}}</td>
+                    <td>
+                        <button class="btn btn-primary btm-sm" type="button" [routerLink]="['/facturas/', factura.id]">
+                            Ver
+                        </button>
+                    </td>
+                    <td><button class="btn btn-danger btn-sm" type="button" (click)="delete(factura)">Eliminar</button> </td>
+                </tr>
+        
+        
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+
+
 </div>
 
-<table class="table table-bordered table-striped my-4" *ngIf="user.facturas.length > 0">
-    <thead>
-        <tr>
-            <th>Id Factura</th>
-            <th>Descripcion</th>
-            <th>Fecha</th>
-            <th>Total</th>
-            <th>Detalle</th>
-            <th>Eliminar</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let factura of user.facturas">
-            <td>{{factura.id}}</td>
-            <td>{{factura.descripcion}}</td>
-            <td>{{factura.createAt}}</td>
-            <td>{{factura.total}}</td>
-            <td>
-                <button class="btn btn-primary btm-sm" type="button" [routerLink]="['/facturas/', factura.id]">
-                    Ver
-                </button>
-            </td>
-            <td><button class="btn btn-danger btn-sm" type="button" (click)="delete(factura)">Eliminar</button> </td>
-        </tr>
 
-
-    </tbody>
-</table>
 

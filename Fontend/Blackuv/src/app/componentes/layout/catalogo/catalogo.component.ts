@@ -56,17 +56,40 @@ export class CatalogoComponent implements OnInit {
 
   agregarCarrito(producto: Producto): void{
 
-    let itm =  new ItemFactura();
-    itm.producto = producto;
-    itm.importe = producto.precio 
-    this.carrito.push(itm);
-    console.log("agregui algoaa" + itm);
-    
+    if(this.existeItem(producto.id)){
+      this.incrementarCantidad(producto.id);
+    }
+    else{
+      let itm =  new ItemFactura();
+      itm.producto = producto;
+      itm.importe = producto.precio 
+      this.carrito.push(itm);
+    } 
     
   }
 
 
+  existeItem(id:number) :boolean{
+    let existe = false
+    this.carrito.forEach( (item : ItemFactura) =>{
+      if(id === item.producto.id){
+        existe = true
+      }
+    })
+    console.log(existe);
+    return existe;
+  }
 
+  incrementarCantidad(id:number) :void{
+    
+    this.carrito.forEach( (item : ItemFactura) =>{
+      if(id === item.producto.id){
+        ++item.cantidad
+      }
+    console.log(item);
+    return item;
+    })
+  }
 
 
 
