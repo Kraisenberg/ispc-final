@@ -64,5 +64,23 @@ export class CarritoComponent implements OnInit {
     })
   }
 
+  existeItem(id:number) :boolean{
+    let existe = false
+    this.factura.items.forEach( (item : ItemFactura) =>{
+      if(id === item.producto.id){
+        existe = true
+      }
+    })
+    return existe;
+  }
+
+  incrementarCantidad(id:number) :void{
+    this.factura.items = this.factura.items.map( (item):ItemFactura =>{
+      if(id === item.producto.id){
+        ++item.cantidad
+      }
+      return item;
+    })
+  }
 
 }
