@@ -8,7 +8,7 @@
                 <p>Para poder agregar productos al carrito primero debes iniciar sesión</p>
             </div>    
 
-        <form>
+        <form #registroform="ngForm">
             <div class="class form-group row mb-3">
                 <label class="col-sm-2 col-form-label" for="">Cliente</label>
                 <div class="col-sm-6">
@@ -19,7 +19,12 @@
             <div class="class form-group row mb-3">
                 <label class="col-sm-2 col-form-label" for="">Descripcion</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" [(ngModel)]="factura.descripcion">
+                    <input class="form-control" type="text" [(ngModel)]="factura.descripcion" name="descripcion" required #descripcion="ngModel">
+                    <div class="alert alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                        <div  *ngIf="descripcion.errors?.['required']">
+                            Una descripcion es requerida
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -42,10 +47,18 @@
                 </tbody>
             </table>
 
+            <div class="card-body alert alert-info my-4 text-center" *ngIf="factura.items.length == 0">
+                Necestias al menos un producto para crear la factura
+            </div> 
 
-            <div class="class form-group row">
-                <div class="col-sm-6">
-                    <input class="form-control" type="submit" value="Crear Factura" class="btn btn-primary">
+            <div class="mb-4 d-flex justify-content-end">
+                <h5 >Importe Total: <span class="badge bg-success">{{factura.calcularGranTotal()}}</span></h5>
+            </div>
+           
+
+            <div class=" mb-4 d-flex justify-content-start">
+                <div class="">
+                    <input  [disabled]="((factura.items.length == 0) || !registroform.form.valid)" (click)="createFactura()"  class="form-control"  value="Crear Factura" class="btn btn-primary">
                 </div>
             </div>
         </form>

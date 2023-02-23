@@ -8,7 +8,11 @@ import { FacturaService } from 'src/app/services/factura.service';
   templateUrl: './detalle-factura.component.html',
   styleUrls: ['./detalle-factura.component.css']
 })
+
+
 export class DetalleFacturaComponent implements OnInit {
+
+  //mercadopago = require("mercadopago");
 
   factura!: Factura;
   titulo: string = "Factura";
@@ -23,6 +27,8 @@ export class DetalleFacturaComponent implements OnInit {
       this.facturaService.getFactura(id).subscribe(factura => this.factura = factura)
     })
 
+   //this.mercadopago.configure({ access_token: "TEST-5747531730451898-022318-b4cb65d63e36a76a59cf8d92f2be11e5-267157970",});  
+  
   }
 
 }
