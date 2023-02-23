@@ -8,7 +8,7 @@ import { Factura } from '../class/factura';
 })
 export class FacturaService {
 
-  private url: string = "http://localhost:8081/blackuva/facturas/"
+  private url: string = "http://localhost:8081/blackuva/facturas"
 
   
   constructor(private _http : HttpClient) { 
@@ -16,12 +16,15 @@ export class FacturaService {
   }
 
   getFactura(id:number): Observable<Factura> {
-    return this._http.get<Factura>(this.url + id);
+    return this._http.get<Factura>(this.url + "/ " + id);
   }
 
   deleteFactura(id:number): Observable<void>{
-    return this._http.delete<void>(this.url + id);
+    return this._http.delete<void>(this.url + "/ " + id);
   }
   
+  createFactura(factura: Factura): Observable<Factura>{
+    return this._http.post<Factura>( this.url , factura);
+  }
 
 }

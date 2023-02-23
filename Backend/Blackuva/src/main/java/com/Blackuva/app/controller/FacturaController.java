@@ -171,8 +171,12 @@ public class FacturaController {
 	
 	
 	}
-	
-	
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public Factura crear(@RequestBody Factura factura) {
+		
+		return this.service.saveFactura(factura);
+	}
 	
 	
 	
