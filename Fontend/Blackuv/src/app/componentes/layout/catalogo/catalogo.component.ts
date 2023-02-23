@@ -5,6 +5,7 @@ import { Factura } from 'src/app/class/factura';
 import { ItemFactura } from 'src/app/class/item-factura';
 import { Producto } from 'src/app/class/producto';
 import { AuthService } from 'src/app/services/auth.service';
+import { CarritoService } from 'src/app/services/carrito.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import Swal from 'sweetalert2';
 
@@ -19,24 +20,25 @@ export class CatalogoComponent implements OnInit {
 
   carrito: ItemFactura[] = []
 
-  factura: Factura =  new Factura();
+ // factura: Factura =  new Factura();
 
   //productoSelec: Producto;
 
   constructor(
     public authservice: AuthService,
+    public carritoService: CarritoService,
     private productoService: ProductoService,
     private activatedRoute: ActivatedRoute
+    
   ) { }
 
   ngOnInit(): void {
-    
     this.getProductos();
 
   }
 
-  ngOnChanges():void{
-
+  ngOnChanges( ):void{
+    
   }
 
   getProductos(){
@@ -53,7 +55,11 @@ export class CatalogoComponent implements OnInit {
         })
 
   }
+  agregarCarrito(producto: Producto): void{
+    this.carritoService.agregarCarrito(producto);
+  }
 
+  /*
   agregarCarrito(producto: Producto): void{
 
     if(this.existeItem(producto.id)){
@@ -83,6 +89,8 @@ export class CatalogoComponent implements OnInit {
   incrementarCantidad(id:number) :void{
     
     this.carrito.forEach( (item : ItemFactura) =>{
+      //if()
+      
       if(id === item.producto.id){
         ++item.cantidad
       }
@@ -91,9 +99,11 @@ export class CatalogoComponent implements OnInit {
     })
   }
 
-
-
-
+  eliminarItemFactura(id: number):void{
+   // this.factura.items = this.factura.items.filter( (item: ItemFactura) =>{id !== item.producto.id })
+    
+  }
+*/
 
 
 
