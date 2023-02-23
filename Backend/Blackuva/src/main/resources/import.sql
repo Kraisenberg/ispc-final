@@ -3,7 +3,7 @@ insert into users (dateofbirth, email, lastname, name, password, role) values ('
 insert into users (dateofbirth, email, lastname, name, password, role) values ('1989-03-24', 'jaime@mail', 'altozano', 'jaime', '1234', 'ROLE_USER');
 
 /*Populate tabla productos*/
-INSERT INTO productos (nombre, precio, create_at) VALUES('Vino Santa Julia', 8000 , NOW() );
+INSERT INTO productos (nombre, precio, create_at , foto) VALUES('Colección Rutini Cabernet Malbec', 23500 , NOW(), 'Rutini-Cabernet-Malbec.webp');
 INSERT INTO productos (nombre, precio, create_at) VALUES('Vino Toro', 400 , NOW() );
 INSERT INTO productos (nombre, precio, create_at) VALUES('Vino Malbec', 5673 , NOW() );
 INSERT INTO productos (nombre, precio, create_at) VALUES('Vino y se fué', 2987 , NOW() );

@@ -17,8 +17,8 @@
                 <div class="row g-0">
                   <div class="col-md-4">                   
                     <img *ngIf="producto?.foto"
-                            src="http://localhost:8081/api/users/uploads/img/{{producto.foto}}" alt="{{producto.foto}}"
-                            class="img-fluid rounded-start">
+                            src="http://localhost:8081/blackuva/facturas/uploads/img/{{producto.foto}}" alt="{{producto.foto}}"
+                            class="img-fluid rounded-start" style="max-height: 128px;">
                         
                         <img *ngIf="!producto?.foto"
                             src="http://localhost:8081/images/no-image.png" alt="sin foto"

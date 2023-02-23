@@ -52,14 +52,7 @@ export class ListaProductosComponent implements OnInit {
 
     this.activatedRoute.paramMap.subscribe( params =>
       {
-        this.productoService.getProductos().pipe(
-          tap(response => {
-            console.log('Usuariocomponent: tap 2');
-            let arobj :any = response
-            let userlist: Producto[] = (arobj) as Producto[]
-            (userlist).forEach(producto => {console.log(producto.nombre); })
-         })
-       )
+        this.productoService.getProductos()
         .subscribe(
           response => {
             let arobj :any = response
