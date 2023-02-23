@@ -224,7 +224,7 @@ public class RegistrationController {
 			
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
-	*/
+	
 	
 	@GetMapping("/uploads/img/{nombreFoto:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto){
@@ -242,11 +242,9 @@ public class RegistrationController {
 		return new ResponseEntity<Resource>(recurso, cabecera ,HttpStatus.OK);
 	
 	
-	
-	
 	}
 	
-	
+	*/
 	
 	
 	

@@ -14,6 +14,8 @@ import { DetalleFacturaComponent } from './componentes/facturas/detalle-factura.
 import { CatalogoComponent } from './componentes/layout/catalogo/catalogo.component';
 import { CarritoComponent } from './componentes/facturas/carrito.component';
 import { ListaProductosComponent } from './layout/lista-productos/lista-productos.component';
+import { RegistroProductoComponent } from './componentes/registro-producto/registro-producto.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ListaProductosComponent } from './layout/lista-productos/lista-producto
     DetalleFacturaComponent,
     CatalogoComponent,
     CarritoComponent,
-    ListaProductosComponent
+    ListaProductosComponent,
+    RegistroProductoComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

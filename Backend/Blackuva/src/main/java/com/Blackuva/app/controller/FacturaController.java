@@ -1,9 +1,17 @@
 package com.Blackuva.app.controller;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.Blackuva.app.entity.Factura;
 import com.Blackuva.app.entity.Producto;
 import com.Blackuva.app.service.RegistrationService;
+import com.Blackuva.app.service.UploadFileService;
 
 @CrossOrigin(origins= {"http://localhost:4200"})
 @RestController
@@ -27,6 +37,9 @@ public class FacturaController {
 
 	@Autowired 
 	RegistrationService service;
+	
+	@Autowired
+	private UploadFileService uploadFileService;
 	
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
@@ -59,18 +72,23 @@ public class FacturaController {
 	}
 	 
 	@DeleteMapping("/productos/{id}")
-	@ResponseStatus(HttpStatus.OK)
-	public String deleteProducto(@PathVariable Long id){
+	//@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<?> deleteProducto(@PathVariable Long id){
 		
-		String mensaje = "Error";
+		Map<String, Object> response = new HashMap<>();
 		try {
+			Producto oProduct = service.findProductoById(id);
+			String nombreFotoAnterior = oProduct.getFoto();			
+			uploadFileService.eliminar(nombreFotoAnterior);		
 			service.deleteProductoById(id);
-			mensaje = "Producto eliminado correctamente";
 		}
-		catch(Exception e){
-			mensaje = "Error al eliminar producto: "+ e.getMessage() ;
+		catch(DataAccessException e){
+			response.put("mensaje", "Error al eliminar en la base de datos");
+			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return mensaje;
+		response.put("mensaje", "Usuario eliminado correctamente");
+		return new ResponseEntity<Map<String,Object>>(response, HttpStatus.OK);	
 	}
 	
 	@PostMapping("/productos")
@@ -92,6 +110,80 @@ public class FacturaController {
 				
 		return tempProducto;
 	}
+	
+	
+	
+	@PostMapping("/upload")
+	public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id){
+	
+		Map<String, Object> response = new HashMap<>();
+		
+		Producto product = service.findProductoById(id);
+		
+		
+		if(!archivo.isEmpty()) {
+			
+			String nombreArchivo = null;
+			
+			try {
+				
+				nombreArchivo =  uploadFileService.copiar(archivo);
+				
+			} catch (IOException e) {			
+				
+				response.put("mensaje", "Error al subir imagen: ");
+				response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+				
+			}
+			
+			String nombreFotoAnterior = product.getFoto();	
+			
+			uploadFileService.eliminar(nombreFotoAnterior);
+			
+			product.setFoto(nombreArchivo);
+			service.saveProducto(product);
+			
+			response.put("usuario", product);
+			response.put("mensaje", "Foto cargada con exito: " + nombreArchivo);
+			
+		}
+		
+			
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+	}
+	
+	
+	@GetMapping("/uploads/img/{nombreFoto:.+}")
+	public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto){
+
+		Resource recurso = null;	
+		
+		try {
+			recurso = uploadFileService.cargar(nombreFoto);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
+		HttpHeaders cabecera = new HttpHeaders();
+		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"" );
+		return new ResponseEntity<Resource>(recurso, cabecera ,HttpStatus.OK);
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

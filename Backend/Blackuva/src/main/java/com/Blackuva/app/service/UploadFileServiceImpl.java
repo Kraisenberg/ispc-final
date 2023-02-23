@@ -35,7 +35,7 @@ public class UploadFileServiceImpl implements UploadFileService {
 		
 		if(!recurso.exists() && !recurso.isReadable()) {
 			
-			Path rutaArchivo2 = Paths.get("src/main/resources/static/images").resolve("no-usuario.png").toAbsolutePath();
+			Path rutaArchivo2 = Paths.get("src/main/resources/static/images").resolve("no-image.png").toAbsolutePath();
 			
 			recurso = new UrlResource(rutaArchivo2.toUri());
 		
