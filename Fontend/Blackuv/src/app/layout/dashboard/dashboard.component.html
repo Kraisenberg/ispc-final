@@ -3,14 +3,14 @@
    
     <div class="card-body">
 
-        <p class="alert alert-info">Hola {{authservice.getuserInSession()}}! Aqui podras consultar tus facturas o actualizar tus datos</p>
+        <p class="alert alert-info">Hola <strong>{{user.name.toUpperCase() }} {{user.lastname.toUpperCase()}} </strong>! Aqui podras consultar tus facturas o actualizar tus datos</p>
 
         <button class="btn btn-primary mb-4" routerLink="/registrarse/{{authservice.getIdSession()}}">Actualizar mis datos de usuario</button>
 
         <h4>Listado de Facturas</h4>
 
         <div class="alert alert-info my-4" *ngIf="user.facturas.length == 0">
-            {{user.name.toUpperCase() }} {{user.lastname.toUpperCase() }}, usted no posee facturas actualmente.
+            Usted no posee facturas actualmente.
         </div>
         
         <table class="table table-bordered table-striped my-4" *ngIf="user.facturas.length > 0">

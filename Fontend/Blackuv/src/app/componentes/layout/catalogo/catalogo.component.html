@@ -1,8 +1,11 @@
 <div class="container card border-primary mb-3 my-3">
 
     <div class="card-body" *ngIf="authservice.isAuthenticated()">
-      <app-carrito [itemFactura]="carrito" ></app-carrito>
+      <app-carrito></app-carrito>
     </div>
+    <!--[itemFactura]="carrito"-->
+
+
 
     <div class="card-body alert alert-info my-4 text-center" *ngIf="!authservice.isAuthenticated()">
         <p>Para poder agregar productos al carrito primero debes iniciar sesión</p>

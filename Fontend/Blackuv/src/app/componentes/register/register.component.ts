@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/class/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { RegistrationService } from 'src/app/services/registration.service';
 import Swal from 'sweetalert2';
 
@@ -13,7 +14,10 @@ export class RegisterComponent implements OnInit {
 
   user : User =  new User();
 
-  constructor(private _service : RegistrationService, private _router : Router, private activatedRoute : ActivatedRoute) { }
+  constructor(private _service : RegistrationService, 
+    private _router : Router, 
+    private activatedRoute : ActivatedRoute,
+    private authservice: AuthService) { }
 
   ngOnInit(): void {
 
@@ -26,7 +30,7 @@ export class RegisterComponent implements OnInit {
         console.log(data);    
         Swal.fire('Registro', `Usuario ${data.name} registrado exitosamente` , 'success' )
         console.log("Responce recived");
-        this._router.navigate(['/listausuarios']);
+        this._router.navigate(['/catalogo']);
       },
       error => {
         console.log("Exception occured");
@@ -38,7 +42,12 @@ export class RegisterComponent implements OnInit {
   actualizarUsuario(){
     this._service.updateUsuario(this.user).subscribe()
     Swal.fire('Registro', `Usuario ${this.user.name} actualizado exitosamente` , 'success' )
-    this._router.navigate(['/listausuarios']);
+    if(this.authservice.isAdmin()){
+      this._router.navigate(['/listausuarios']);
+    }
+    else{
+      this._router.navigate(['/dashboard']);
+    }
   }
 
   cargarUsuario(){

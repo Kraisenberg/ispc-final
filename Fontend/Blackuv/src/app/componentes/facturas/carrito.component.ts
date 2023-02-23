@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Factura } from 'src/app/class/factura';
 import { ItemFactura } from 'src/app/class/item-factura';
 import { Producto } from 'src/app/class/producto';
+import { AuthService } from 'src/app/services/auth.service';
+import { CarritoService } from 'src/app/services/carrito.service';
 import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
@@ -12,16 +14,13 @@ import { RegistrationService } from 'src/app/services/registration.service';
 })
 export class CarritoComponent implements OnInit {
 
-  
-  @Input() itemFactura!: ItemFactura[]
-
-  @Input() productoSelec! : Producto
-
   factura: Factura = new Factura();
 
   constructor(
+    public carritoService: CarritoService,
     private service : RegistrationService,
-    private activatedRoute: ActivatedRoute
+    //private activatedRoute: ActivatedRoute,
+    public authservice : AuthService
   ) { }
 
   ngOnInit(): void {
@@ -31,37 +30,28 @@ export class CarritoComponent implements OnInit {
     console.log("inicio");
     this.anadirItemFactura() ;   
   }
-  ngOnChanges(changes: any):void{
 
-    if(changes.inputValue){
-      this.anadirItemFactura(); 
-      console.log("on cambios");
-      
-    }
-    
-  }
-
-
-  seleccionarProducto(){
-    let nuevoItem = new ItemFactura();
-  
-  }
 
   anadirItemFactura():void{
-    this.factura.items = this.itemFactura
+    this.factura.items = this.carritoService.carrito
     console.log("añadir item factura");
     
-    console.log(this.itemFactura)
+    console.log(this.carritoService.carrito)
   }
 
   actualizarCantidad(id: number, event : any): void{
     let cantidad: number = Number(event.target.value);
-    this.factura.items = this.factura.items.map( (item):ItemFactura =>{
-      if(id === item.producto.id){
-        item.cantidad = cantidad;
-      }
-      return item;
-    })
+    if(cantidad == 0){
+      this.eliminarItemFactura(id);
+    }
+    
+      this.factura.items = this.factura.items.map( (item):ItemFactura =>{
+        if(id === item.producto.id){
+          item.cantidad = cantidad;
+        }
+        return item;
+     })
+    
   }
 
   existeItem(id:number) :boolean{
@@ -75,12 +65,14 @@ export class CarritoComponent implements OnInit {
   }
 
   incrementarCantidad(id:number) :void{
-    this.factura.items = this.factura.items.map( (item):ItemFactura =>{
-      if(id === item.producto.id){
-        ++item.cantidad
-      }
-      return item;
-    })
+    this.carritoService.incrementarCantidad(id);
   }
+
+  eliminarItemFactura(id: number):void{
+    this.carritoService.eliminarItemFactura(id)
+    
+  }
+
+
 
 }
