@@ -1,12 +1,5 @@
 <div class="container card border-primary mb-3 my-3">
 
-    <div class="card-body" *ngIf="authservice.isAuthenticated()">
-      <app-carrito></app-carrito>
-    </div>
-    <!--[itemFactura]="carrito"-->
-
-
-
     <div class="card-body alert alert-info my-4 text-center" *ngIf="!authservice.isAuthenticated()">
         <p>Para poder agregar productos al carrito primero debes iniciar sesión</p>
     </div>
@@ -31,7 +24,7 @@
                     <div class="card-body">
                       <h5 class="card-title">{{producto.nombre}}</h5>
                       <p class="card-text">Oferta especial online {{producto.nombre}}, a tan solo ${{producto.precio}} </p>
-                      <button type="button" (click)="agregarCarrito(producto)" class="btn btn-primary">Añadir al carrito</button>
+                      <button type="button" (click)="agregarCarrito(producto)" class="btn btn-primary" [disabled]="!authservice.isAuthenticated()">Añadir al carrito</button>
                     </div>
                   </div>
                 </div>

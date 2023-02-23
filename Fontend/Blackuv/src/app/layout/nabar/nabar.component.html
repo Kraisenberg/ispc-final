@@ -8,12 +8,19 @@
     
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" routerLink="active">
+          <li class="nav-item" >
             <a class="nav-link" routerLink="catalogo">Catalogo</a>
           </li>
-          <li class="nav-item" routerLink="active" *ngIf="authservice.isAdmin()">
-            <a class="nav-link" routerLink="productosback"></a>
-          </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="/carrito">
+              <img src="http://localhost:8081/images/carrito-b.png" style="max-width: 24px; max-height: 24px;">
+              
+              <span class=" top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf="carritoService.carrito.length > 0">
+                {{carritoService.carrito.length}}
+                <span class="visually-hidden">articulos del carrito</span>
+              </span>
+            </a>
+          </li> 
         </ul>
         <ul class="navbar-nav ms-auto">
           <li *ngIf="!isAuthenticated()"><a routerLink="login" class="btn btn-outline-primary" >Iniciar Sesión</a></li>
@@ -21,8 +28,8 @@
           <li *ngIf="isAuthenticated()" class="dropdown">
             <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img 
-              src="http://localhost:8081/images/no-usuario.png" alt="sin foto"
-              style="width: 24px; cursor: pointer; background-color: #0d6efd;">
+              src="http://localhost:8081/images/no-usuario-b.png" alt="sin foto"
+              style="width: 24px; cursor: pointer;">
                {{authservice.getuserInSession()}}
             </a>            
             <ul class="dropdown-menu">           
