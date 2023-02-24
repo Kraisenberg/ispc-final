@@ -37,8 +37,14 @@
         </table>
         <h5 >
             <span>Toltal a pagar: $</span><span class="badge bg-secondary">{{factura.total}}</span>
-            <button type="button" class="float-end btn btn-primary ">Pagar</button>
+            <!--<button type="button" class="float-end btn btn-primary ">Pagar</button>-->
         </h5>
+        <div class="float-end" style="max-width: 200px;">
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+        </div>
+       
 
     </div>
-</div>
+</div>        
+
+ 

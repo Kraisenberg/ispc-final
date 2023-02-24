@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,11 @@ import { CarritoComponent } from './componentes/facturas/carrito.component';
 import { ListaProductosComponent } from './layout/lista-productos/lista-productos.component';
 import { RegistroProductoComponent } from './componentes/registro-producto/registro-producto.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { PaypalCheckoutComponent } from './componentes/paypal-check-out/paypal-check-out.component';
+
+//externos
+import { NgxPayPalModule } from 'ngx-paypal';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -30,14 +35,18 @@ import { FooterComponent } from './layout/footer/footer.component';
     CarritoComponent,
     ListaProductosComponent,
     RegistroProductoComponent,
-    FooterComponent
+    FooterComponent,
+    PaypalCheckoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPayPalModule,
+    //NgxSpinnerModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })
