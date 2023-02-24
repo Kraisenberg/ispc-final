@@ -35,7 +35,7 @@
                             style="width: 64px; cursor: pointer;">                                                        
                     </td>
                     <td>{{ producto.nombre }}</td> 
-                    <td>{{ producto.precio }}</td>
+                    <td> &euro; {{ producto.precio }}</td>
                     
                     <td>
                         <button type="button" name="button" [routerLink]="['/registrarproducto/',producto.id]" class="btn btn-primary">Editar</button>
