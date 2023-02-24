@@ -18,6 +18,8 @@ export class CarritoComponent implements OnInit {
 
   factura: Factura = new Factura();
 
+  
+
   constructor(
     public carritoService: CarritoService,
     private service : RegistrationService,

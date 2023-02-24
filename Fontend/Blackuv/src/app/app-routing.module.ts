@@ -5,24 +5,26 @@ import { DetalleFacturaComponent } from './componentes/facturas/detalle-factura.
 import { CatalogoComponent } from './componentes/layout/catalogo/catalogo.component';
 import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuarios.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { PaypalCheckoutComponent } from './componentes/paypal-check-out/paypal-check-out.component';
 import { RegisterComponent } from './componentes/register/register.component';
 import { RegistroProductoComponent } from './componentes/registro-producto/registro-producto.component';
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { ListaProductosComponent } from './layout/lista-productos/lista-productos.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent, pathMatch:'full' },
-  {path: 'registrarse', component: RegisterComponent, pathMatch: 'full'},
-  {path: 'registrarse/:id', component: RegisterComponent, pathMatch: 'full'},
-  {path: 'listausuarios', component: ListaUsuariosComponent, pathMatch: 'full'},
-  {path: 'dashboard', component: DashboardComponent, pathMatch: 'full'},
-  {path: 'facturas/:id', component: DetalleFacturaComponent, pathMatch: 'full'},
-  {path: 'catalogo', component: CatalogoComponent, pathMatch: 'full'},
-  {path: 'carrito', component: CarritoComponent, pathMatch: 'full'},
-  {path: 'listaproductos', component: ListaProductosComponent, pathMatch: 'full'},
-  {path: 'registrarproducto', component: RegistroProductoComponent, pathMatch: 'full'},
-  {path: 'registrarproducto/:id', component: RegistroProductoComponent, pathMatch: 'full'},
-  {path: ' ', component: CatalogoComponent, pathMatch: 'full'},
+  { path: 'login', component: LoginComponent, pathMatch:'full' },
+  { path: 'registrarse', component: RegisterComponent, pathMatch: 'full'},
+  { path: 'registrarse/:id', component: RegisterComponent, pathMatch: 'full'},
+  { path: 'listausuarios', component: ListaUsuariosComponent, pathMatch: 'full'},
+  { path: 'dashboard', component: DashboardComponent, pathMatch: 'full'},
+  { path: 'facturas/:id', component: DetalleFacturaComponent, pathMatch: 'full'},
+  { path: 'catalogo', component: CatalogoComponent, pathMatch: 'full'},
+  { path: 'carrito', component: CarritoComponent, pathMatch: 'full'},
+  { path: 'listaproductos', component: ListaProductosComponent, pathMatch: 'full'},
+  { path: 'registrarproducto', component: RegistroProductoComponent, pathMatch: 'full'},
+  { path: 'registrarproducto/:id', component: RegistroProductoComponent, pathMatch: 'full'},
+  { path: 'paypalcheckout', component: PaypalCheckoutComponent },
+  { path: '', component: CatalogoComponent, pathMatch: 'full'}
   
 
 ];
