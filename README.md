@@ -10,7 +10,12 @@ Blackuva es una tienda online dedicada a la venta de vinos y/o productos alcolic
 
 El frontend fue realizado con Angular.ts y el backend con Java SpringBoot.
 
-## Se adjuntan capturas del mismo
+## Documento IEEE830
+
+https://docs.google.com/document/d/1OOW-7ccdih2fHlUkGvzHQ6Cd2Y1heizu4WJ6--IZwHk/edit#
+
+
+## Se adjuntan capturas del sitio
 
 ![image](https://github.com/Kraisenberg/ispc-final/blob/main/capturas/Captura%20adm%20productos.jpg)
 
