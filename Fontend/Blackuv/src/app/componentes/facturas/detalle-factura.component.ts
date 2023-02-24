@@ -14,7 +14,9 @@ import { MercadoPagoService } from 'src/app/services/mercadopago.service';
 
 export class DetalleFacturaComponent implements OnInit {
 
-  factura!: Factura;
+  factura: Factura = new Factura;
+  totalFactura: number = 0.00;
+  detalleFactura: string = '';
   titulo: string = "Factura";
 
   public payPalConfig?: IPayPalConfig;
@@ -28,15 +30,23 @@ export class DetalleFacturaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.initConfig()
+    
     this.activatedRoute.paramMap.subscribe(params =>{
       let id = Number(params.get('id'));
-      this.facturaService.getFactura(id).subscribe(factura => this.factura = factura)
+      this.facturaService.getFactura(id).subscribe(factura => {
+        this.factura = factura;
+        this.totalFactura = factura.total;
+        this.detalleFactura = factura.descripcion;
+        this.initConfig();
+      })
+
     })
+    
   }
 
 
   private initConfig(): void {
+
     this.payPalConfig = {
       currency: 'EUR',
       clientId: 'AZtVTJxSWkOf6ac6l5P0W3vvDcgSTu5rhyx4GJ-awdB-xBXSiinkJhFXSRpCEui2R9GgmN1ls3PMAqtL',
@@ -45,21 +55,21 @@ export class DetalleFacturaComponent implements OnInit {
         purchase_units: [{
           amount: {
             currency_code: 'EUR',
-            value: '9.99',
+            value: this.totalFactura.toString(),
             breakdown: {
               item_total: {
                 currency_code: 'EUR',
-                value: '9.99'
+                value: this.totalFactura.toString(),
               }
             }
           },
           items: [{
-            name: 'Enterprise Subscription',
+            name: this.detalleFactura,
             quantity: '1',
             category: 'DIGITAL_GOODS',
             unit_amount: {
               currency_code: 'EUR',
-              value: '9.99',
+              value: this.totalFactura.toString(),
             },
           }]
         }]

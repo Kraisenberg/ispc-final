@@ -29,17 +29,17 @@
             <tbody>
                 <tr *ngFor="let item of factura.items">
                     <td>{{item.producto.nombre}}</td>
-                    <td>{{item.producto.precio}}</td>
+                    <td>&euro;{{item.producto.precio}}</td>
                     <td>{{item.cantidad}}</td>
-                    <td>{{item.importe}}</td>
+                    <td>&euro;{{item.importe}}</td>
                 </tr>
             </tbody>
         </table>
         <h5 >
-            <span>Toltal a pagar: $</span><span class="badge bg-secondary">{{factura.total}}</span>
+            <span>Toltal a pagar: &euro; </span><span class="badge bg-secondary">{{factura.total}}</span>
             <!--<button type="button" class="float-end btn btn-primary ">Pagar</button>-->
         </h5>
-        <div class="float-end" style="max-width: 200px;">
+        <div class="container">
             <ngx-paypal [config]="payPalConfig"></ngx-paypal>
         </div>
        

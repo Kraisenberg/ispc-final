@@ -118,9 +118,7 @@ public class RegistrationController {
 		
 		try {
 			
-			Optional<User> user = service.findById(id);
-			//String nombreFotoAnterior = cliente.get().getFoto();			
-			//uploadFileService.eliminar(nombreFotoAnterior);		
+			Optional<User> user = service.findById(id);	
 			service.deleteById(id);
 			
 		} catch(DataAccessException e) {
@@ -139,7 +137,7 @@ public class RegistrationController {
 	public ResponseEntity<?> update (@Validated @RequestBody User userDetails, BindingResult result, @PathVariable(value = "id" )Integer userId){	
 		
 		Map<String, Object> response = new HashMap<>();
-		Optional<User> cliente =  service.findById(userId);
+		Optional<User> user =  service.findById(userId);
 		User userUpdated = null;
 		
 		if (result.hasErrors()) {
@@ -157,18 +155,19 @@ public class RegistrationController {
 		
 		try {
 								
-			if(!cliente.isPresent()) {				
+			if(!user.isPresent()) {				
 				response.put("mensaje", "Error: Usuario no encontrado");
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 			}
 			
-			cliente.get().setName(userDetails.getName());
-			cliente.get().setLastname(userDetails.getLastname());
-			cliente.get().setEmail(userDetails.getEmail());
-			cliente.get().setPassword(userDetails.getPassword());
-			cliente.get().setDateofbirth(userDetails.getDateofbirth());
+			user.get().setName(userDetails.getName());
+			user.get().setLastname(userDetails.getLastname());
+			user.get().setEmail(userDetails.getEmail());
+			user.get().setPassword(userDetails.getPassword());
+			user.get().setDateofbirth(userDetails.getDateofbirth());
+			user.get().setRole(userDetails.getRole());
 			
-			userUpdated = service.save(cliente.get());
+			userUpdated = service.save(user.get());
 			
 		} catch(DataAccessException e) {
 			
@@ -176,83 +175,11 @@ public class RegistrationController {
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		
-		}
-		
+		}	
 		response.put("mensaje", "Usuario actualizado con exito");
 		response.put("usuario", userUpdated);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	
 	}
-	
-	/*
-	@PostMapping("/upload")
-	public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Integer id){
-	
-		Map<String, Object> response = new HashMap<>();
-		
-		Optional<User> user = service.findById(id);
-		
-		
-		if(!archivo.isEmpty()) {
-			
-			String nombreArchivo = null;
-			
-			try {
-				
-				nombreArchivo =  uploadFileService.copiar(archivo);
-				
-			} catch (IOException e) {			
-				
-				response.put("mensaje", "Error al subir imagen: ");
-				response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
-				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-				
-			}
-			
-			String nombreFotoAnterior = user.get().getFoto();	
-			
-			uploadFileService.eliminar(nombreFotoAnterior);
-			
-			user.get().setFoto(nombreArchivo);
-			service.save(user.get());
-			
-			response.put("usuario", user);
-			response.put("mensaje", "Foto cargada con exito: " + nombreArchivo);
-			
-		}
-		
-			
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-	}
-	
-	
-	@GetMapping("/uploads/img/{nombreFoto:.+}")
-	public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto){
-
-		Resource recurso = null;	
-		
-		try {
-			recurso = uploadFileService.cargar(nombreFoto);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		
-		HttpHeaders cabecera = new HttpHeaders();
-		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"" );
-		return new ResponseEntity<Resource>(recurso, cabecera ,HttpStatus.OK);
-	
-	
-	}
-	
-	*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

@@ -23,7 +23,7 @@
                   <div class="col-md-8"> 
                     <div class="card-body">
                       <h5 class="card-title">{{producto.nombre}}</h5>
-                      <p class="card-text">Oferta especial online {{producto.nombre}}, a tan solo ${{producto.precio}} </p>
+                      <p class="card-text">Oferta especial online {{producto.nombre}}, a tan solo &euro;{{producto.precio}} </p>
                       <button type="button" (click)="agregarCarrito(producto)" class="btn btn-primary" [disabled]="!authservice.isAuthenticated()">Añadir al carrito</button>
                     </div>
                   </div>
