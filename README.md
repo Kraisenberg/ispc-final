@@ -11,10 +11,11 @@ Blackuva es una tienda online dedicada a la venta de vinos y/o productos alcolic
 El frontend fue realizado con Angular.ts y el backend con Java SpringBoot.
 
 Este proyecto fué programado en:
-Angular CLI: 14.2.6
-Node: 16.15.0
-Java: 8
-Spring: 3.0.4
+- Angular CLI: 14.2.6
+- Node: 16.15.0
+- Java: 8
+- Spring: 3.0.4
+- Boostrap: 5.2.3
 
 ## Documento IEEE830
 
