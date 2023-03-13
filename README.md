@@ -16,6 +16,7 @@ Este proyecto fué programado en:
 - Java: 8
 - Spring: 3.0.4
 - Boostrap: 5.2.3
+- MySQL Workbench 8.0
 
 ## Documento IEEE830
 
