@@ -31,7 +31,7 @@ https://docs.google.com/document/d/1OOW-7ccdih2fHlUkGvzHQ6Cd2Y1heizu4WJ6--IZwHk/
 
 ![image](https://github.com/Kraisenberg/ispc-final/blob/main/capturas/Captura%20carritoo.jpg)
 
-![image](https://github.com/Kraisenberg/ispc-final/blob/main/capturas/Captura%20catalogo.jpg)
+![image](https://github.com/Kraisenberg/ispc-final/blob/main/capturas/Captura%20catalogo2.jpg)
 
 ![image](https://github.com/Kraisenberg/ispc-final/blob/main/capturas/actualizar%20producto.jpg)
 
