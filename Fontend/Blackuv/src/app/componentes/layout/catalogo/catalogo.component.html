@@ -5,40 +5,32 @@
     </div>
 
 <div class="card-header text-center"><h4>Catalogo de productos</h4></div>
-    <div class="card-body">
-      
-     <div class="row">
-        <div *ngFor="let producto of productos ">
-            <div class="card mb-3">
-                <div class="row g-0">
-                  <div class="col-md-4">                   
-                    <img *ngIf="producto?.foto"
+
+
+<br>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col" *ngFor="let producto of productos ">
+    <div class="card">
+      <img *ngIf="producto?.foto"
                             src="http://localhost:8081/blackuva/facturas/uploads/img/{{producto.foto}}" alt="{{producto.foto}}"
-                            class="img-fluid rounded-start" style="max-height: 128px;">
+                            class="card-img-top" style="max-height: 40vh">
                         
                         <img *ngIf="!producto?.foto"
                             src="http://localhost:8081/images/no-image.png" alt="sin foto"
-                            class="img-fluid rounded-start">        
-                  </div>
-                  <div class="col-md-8"> 
-                    <div class="card-body">
-                      <h5 class="card-title">{{producto.nombre}}</h5>
-                      <p class="card-text">Oferta especial online {{producto.nombre}}, a tan solo &euro;{{producto.precio}} </p>
-                      <button type="button" (click)="agregarCarrito(producto)" class="btn btn-primary" [disabled]="!authservice.isAuthenticated()">Añadir al carrito</button>
-                    </div>
-                  </div>
-                </div>
-              </div> 
-        </div>
-      </div> 
-
-      
- 
-
-
-
+                            class="card-img-top"> 
+      <div class="card-body">
+        <h5 class="card-title">{{producto.nombre}}</h5>
+        <p class="card-text">
+          Esta oferta especial solo esta disponible de manera online <span class="badge bg-success" > <strong> &euro;{{producto.precio}} </strong> </span>
+        </p>
+        <div class="d-grid gap-2">
+          <button type="button" (click)="agregarCarrito(producto)" class="btn btn-primary btn-sm" [disabled]="!authservice.isAuthenticated()">Añadir al carrito</button>
+        </div>       
+      </div>
     </div>
+  </div>
+ 
 </div>
 
-
-
+</div>

@@ -7,7 +7,7 @@ import { RegisterComponent } from './componentes/register/register.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { NabarComponent } from './layout/nabar/nabar.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ListaUsuariosComponent } from './componentes/lista-usuarios/lista-usuarios.component';
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { DetalleFacturaComponent } from './componentes/facturas/detalle-factura.component';
@@ -21,6 +21,7 @@ import { PaypalCheckoutComponent } from './componentes/paypal-check-out/paypal-c
 //externos
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { AuthInterceptor } from './helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     //NgxSpinnerModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

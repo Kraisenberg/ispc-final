@@ -32,7 +32,8 @@ export class NabarComponent implements OnInit {
   logout(){
     Swal.fire('Cerrar Sesión', 'Cierre de session exitoso', 'success');
     sessionStorage.clear();
-    this.router.navigate([' '])
+    localStorage.clear();
+    this.router.navigate([''])
   }
 
 }

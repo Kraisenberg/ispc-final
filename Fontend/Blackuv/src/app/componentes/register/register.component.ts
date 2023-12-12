@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
         console.log(data);    
         Swal.fire('Registro', `Usuario ${data.name} registrado exitosamente` , 'success' )
         console.log("Responce recived");
-        this._router.navigate(['/catalogo']);
+        this._router.navigate(['/login']);
       },
       error => {
         console.log("Exception occured");

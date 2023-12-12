@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -58,11 +59,9 @@ export class PaypalCheckoutComponent implements OnInit {
         actions.order.get().then((details: any) => {
           console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
-
       },
       onClientAuthorization: (data) => {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);

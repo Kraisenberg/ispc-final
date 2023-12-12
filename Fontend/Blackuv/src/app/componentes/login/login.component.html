@@ -13,7 +13,7 @@
   
         <div class="form-group mb-4">
           <label for="email">Email:</label>
-          <input type="email" class="form-control"  placeholder="Introduce tu email" name="email" [(ngModel)]="user.email" required email #email="ngModel"
+          <input type="email" class="form-control"  placeholder="Introduce tu email" name="email" [(ngModel)]="creds.email" required email #email="ngModel"
           [class.is-invalid]="email.invalid && email.touched && email.dirty"
           >
           <div class="text-danger" *ngIf="email.invalid && (email.touched || email.dirty) "> 
@@ -29,7 +29,7 @@
       </div>
         <div class="form-group mb-4">
           <label for="pwd">Contraseña:</label>
-          <input type="password" class="form-control"  placeholder="Introduce tu contraseña" name="password" [(ngModel)]="user.password" required password #password="ngModel"
+          <input type="password" class="form-control"  placeholder="Introduce tu contraseña" name="password" [(ngModel)]="creds.password" required password #password="ngModel"
           minlength="4"
           [class.is-invalid]="password.invalid && (email.touched || email.dirty)"
           >

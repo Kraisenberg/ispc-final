@@ -51,13 +51,13 @@
             <div class="form-grup row mb-4">
                 <label for="password" class="col-form-label col-sm-2">Contraseña</label>
                 <div class="col-sm-6">
-                    <input type="password" class="form-control" [(ngModel)]="user.password" name="password" required #pass="ngModel" minlength="4"> 
+                    <input type="password" class="form-control" [(ngModel)]="user.password" name="password" required #pass="ngModel" minlength="8"> 
                     <div class="alert alert-danger" *ngIf="pass.invalid && (pass.dirty || pass.touched)">
                         <div  *ngIf="pass.errors?.['required']">
                             Contraseña es requerida
                         </div>
                         <div  *ngIf="pass.errors?.['minlength']">
-                            Debe tener al menos 4 caracteres
+                            Debe tener al menos 8 caracteres
                         </div>
                     </div>
                 </div>

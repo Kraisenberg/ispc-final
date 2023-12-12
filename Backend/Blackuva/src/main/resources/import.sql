@@ -1,10 +1,10 @@
-insert into users (dateofbirth, email, lastname, name, password, role) values ('1998-02-14', 'benito@mail', 'gutierrez', 'benito', '1234', 'ROLE_ADMIN');
-insert into users (dateofbirth, email, lastname, name, password, role) values ('1975-08-18', 'esteban@mail', 'polo', 'esteban', '1234', 'ROLE_USER');
-insert into users (dateofbirth, email, lastname, name, password, role) values ('1989-03-24', 'jaime@mail', 'altozano', 'jaime', '1234', 'ROLE_USER');
+insert into users (dateofbirth, email, lastname, name, password, role) values ('1998-02-14', 'benito@mail', 'gutierrez', 'benito', '$2a$10$sHYrM9cSuZyUY74ytneafuo7E9sBfrDs.qHG63DDFjKjnykKCgj3G', 'ROLE_ADMIN');
+insert into users (dateofbirth, email, lastname, name, password, role) values ('1975-08-18', 'esteban@mail', 'polo', 'esteban', '$2a$10$acuj.mYM3y6j8wsKN.KwlOYzI4YAUlrwRNWyKlX6/Dz2lBg6GQACG', 'ROLE_USER');
+insert into users (dateofbirth, email, lastname, name, password, role) values ('1989-03-24', 'jaime@mail', 'altozano', 'jaime', '$2a$10$acuj.mYM3y6j8wsKN.KwlOYzI4YAUlrwRNWyKlX6/Dz2lBg6GQACG', 'ROLE_USER');
 
 /*Populate tabla productos*/
 INSERT INTO productos (nombre, precio, create_at, foto) VALUES('El Parotet Vermell Tintoc', 9.90 , NOW(), 'ElParotetVermell.webp');
-INSERT INTO productos (nombre, precio, create_at, foto) VALUES('Cullerot Blanco', 11 , NOW() ,'celler-del-roure.webp');
+INSERT INTO productos (nombre, precio, create_at, foto) VALUES('Salentein extra brut', 11 , NOW() ,'salentein-extra-brut-750.webp');
 INSERT INTO productos (nombre, precio, create_at, foto) VALUES('9d Octubre Blanco', 4 , NOW(), '9-octubre-blanco.webp' );
 INSERT INTO productos (nombre, precio, create_at, foto) VALUES('Vino Tinto Paquito el Chocolatero', 10 , NOW(), 'Paquito-el-chocolatero.webp' );
 INSERT INTO productos (nombre, precio, create_at, foto) VALUES('Maloco', 9 , NOW(), 'Maloco.webp' );

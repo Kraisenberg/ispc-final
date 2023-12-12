@@ -4,8 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.Blackuva.app.configs.UserDetailsImpl;
 import com.Blackuva.app.entity.Factura;
 import com.Blackuva.app.entity.Producto;
 import com.Blackuva.app.entity.User;
@@ -16,7 +22,7 @@ import com.Blackuva.app.repository.RegistrationRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-public class RegistrationServiceImpl implements RegistrationService{
+public class RegistrationServiceImpl implements RegistrationService, UserDetailsService{
 	
 	@Autowired
 	private RegistrationRepository repo;
@@ -31,8 +37,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 		return repo.save(user);
 	}
 
-	public User fetchUserByEmail(String email) {
-		
+	public User fetchUserByEmail(String email) {		
 		return repo.findByEmail(email);
 	}
 
@@ -119,8 +124,16 @@ public class RegistrationServiceImpl implements RegistrationService{
 	public Producto findProductoById(Long id) {
 		return productorepo.findById(id).get();
 	}
-	
-	
-	
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		
+		User usuario = repo.findByEmail(email);		
+		Optional<User> user = Optional.of(Optional.of(usuario).orElseThrow(() -> new UsernameNotFoundException("El usuario con email: "+ email +" no existe")));		
+		
+		return new UserDetailsImpl(user);				
+	}
+
+
 	
 }
