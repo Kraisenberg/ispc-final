@@ -10,7 +10,10 @@ export class User {
     dateofbirth!: Date;
     facturas: Array<Factura> = []
 
-
 constructor(){}
+}
 
+export interface Credentials{
+    email: string;
+    password: string;
 }

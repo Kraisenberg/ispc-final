@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
-import {HttpClient } from "@angular/common/http"
-import { User } from '../class/user';
+import {HttpClient, HttpResponse } from "@angular/common/http"
+import { Credentials, User } from '../class/user';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -16,20 +16,46 @@ export class RegistrationService {
 
   constructor(private _http : HttpClient, private router: Router ) { }
 
-  public loginUserFromRemote(user: User):Observable<any>{
+  public loginUserFromRemote(creds: Credentials ):Observable<any>{
     
-    return this._http.post<any>( this.url + 'loginuser', user);
+    var nam = this._http.post("http://localhost:8081/login", creds, {
+      observe: 'response' 
+    })
+      .pipe(map((response: HttpResponse<any>) => {
+      
+        console.log('respuesta back' , response.headers.get('Authorization'));
+        
+        const body = response.body;
+        const headers = response.headers;
 
+        const bearerToken = headers.get('Authorization')!;
+        const token: string = bearerToken.replace('Bearer ', '');
+        
+        localStorage.setItem('token', token);
+        
+        const userid: string = headers.get('User')!;
+        localStorage.setItem('userId', userid);
+        
+        return body;
+
+      }));
+  
+    console.log(nam); 
+    
+    return nam;
   }
 
-  public registerFromRemote(user: User): Observable<any>{
+  getToken(){
+    return localStorage.getItem('token');
+  }
 
-    return this._http.post<any>( this.url + 'registeruser', user);
+  public registerFromRemote(user: User): Observable<any>{    
+    console.log(user);   
+    return this._http.post<any>( this.url + 'registeruser', user);   
   }
 
   getUsuarios(): Observable<any> {
     return this._http.get<User[]>(this.url)
-  
   }
 
   getUsuario(id: number): Observable<User>{
@@ -66,13 +92,6 @@ export class RegistrationService {
         }   
         return throwError(e);
         })
-
     )
   }
-
-
-
-
-
-
 }

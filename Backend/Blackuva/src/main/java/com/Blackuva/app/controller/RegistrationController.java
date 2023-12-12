@@ -22,6 +22,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,6 +47,8 @@ public class RegistrationController {
 	@Autowired
 	private UploadFileService uploadFileService;
 	
+	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	
 	@PostMapping("/registeruser")
 	public User registerUser(@RequestBody User user) throws Exception {
 		
@@ -60,7 +63,9 @@ public class RegistrationController {
 			}
 		}
 		User userObj = null;
-		userObj = service.saveUser(user);
+		String pass = user.getPassword();
+		user.setPassword(passwordEncoder.encode(pass));		
+		userObj = service.saveUser(user);	
 		return userObj;
 	}
 
@@ -108,8 +113,8 @@ public class RegistrationController {
 		}
 		
 		return new ResponseEntity<Optional<User>>(oUser, HttpStatus.OK);		 
-	
 	}
+	
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete (@PathVariable(value = "id") Integer id){		
@@ -163,7 +168,7 @@ public class RegistrationController {
 			user.get().setName(userDetails.getName());
 			user.get().setLastname(userDetails.getLastname());
 			user.get().setEmail(userDetails.getEmail());
-			user.get().setPassword(userDetails.getPassword());
+			user.get().setPassword(passwordEncoder.encode(userDetails.getPassword()));
 			user.get().setDateofbirth(userDetails.getDateofbirth());
 			user.get().setRole(userDetails.getRole());
 			

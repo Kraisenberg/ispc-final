@@ -88,10 +88,11 @@ export class CarritoComponent implements OnInit {
     this.facturaService.createFactura(this.factura).subscribe(
       (factura: Factura) =>{
         Swal.fire('Factura',`Factura ${this.factura.descripcion} creada exitosamente`, 'success')
-        this
         this.router.navigate(['/dashboard'])
       }     
     )
+    this.carritoService.vaciarCarrito();
+
   }
 
 

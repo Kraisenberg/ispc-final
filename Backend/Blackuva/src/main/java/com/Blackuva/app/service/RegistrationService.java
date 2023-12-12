@@ -3,6 +3,9 @@ package com.Blackuva.app.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import com.Blackuva.app.entity.Factura;
 import com.Blackuva.app.entity.Producto;
 import com.Blackuva.app.entity.User;
@@ -39,7 +42,8 @@ public interface RegistrationService {
 	public Producto saveProducto(Producto producto);
 	
 	public void deleteProductoById(Long id);
-
+	
+	
 	
 }
  
